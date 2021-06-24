@@ -1,0 +1,63 @@
+IDEIAS:
+- Colocar fundo com a foto do pokemon de perfil
+- Menu de lado com tela de Perfil, View pokedex e add pokemon
+
+
+TELAS E FUNCIONALIDADES
+
+LOGIN
+	- Colocar nome de usuario e senha
+	- Avisar se: 	o usuario for desconhecido
+			algum campo não tiver sido preenchido
+			a senha estiver errada
+	- Botão que leva a tela de Register
+	- Logar > Leva a tela de visualizar pokedex
+	
+REGISTER
+	- Escolher nome de usuario
+	- Escolher e confirmar senha
+	- Avisar se: 	o nome de usuario ja esta sendo usado
+			algum campo não estiver preenchido
+			a senha não for confirmada corretamente
+	- Botão de cancelar e levar de volta a tela de Login
+	- Registrar dados no Banco de Dados > Leva a tela de Login
+	
+PERFIL
+	- Alterar: 	nome de usuario
+			senha
+			pokemon de perfil
+	- Botão para fazer Logout > Leva a tela de Login
+	- Botão para voltar a tela de Visualizar Pokedex
+	
+VISUALIZAR POKEDEX
+	- Mostrar todos os Pokemons adicionados
+	- Mostrar quantidade de pokemons adicionados por região, quantidade de lendarios e quantidade total
+	- Excluir pokemon da pokedex
+	- Filtrar pokemons
+	- Ordenar pokemons
+	- Botão que faz Logout > Leva a tela de Login
+	- Botão que leva a tela de: 	Adicionar Pokemon
+					Perfil
+					Visualizar Pokemon (Ao clicar no pokemon)
+					
+ADICIONAR POKEMON
+	- Adicionar pokemon: 	por numero
+				por nome
+				aleatorio
+	- Verifica se o pokemon ja foi adicionado
+	- Apresentar o Pokemon antes de dar a opção de adicionar: 	Nome
+									Tipo
+	- Botão para voltar a tela de visualizar pokedex
+	
+VISUALIZAR POKEMON
+	- Poder ver todas as stats do pokemon (Todas as colunas do BD com exeção da ID):	Stats
+												Numero
+												Nome
+												Região
+												Lendario?
+												Tipo
+	- Opçao de excluir pokemon
+	- Poder selecionar pokemon como pokemon de perfil
+	- Botão de passar para o próximo e anterior pokemon do pokedex
+	- Botão para voltar a tela de visualizar pokedex
+	
