@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddPokemonComponent } from './addpokemon/addpokemon.component';
 import { PagesComponent } from './pages.component';
 import { PokedexViewComponent } from './pokedexview/pokedexview.component';
-import { PokemonViewComponent } from './pokemonview/pokemonview.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
@@ -23,10 +22,6 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
-      },
-      {
-        path: 'pokemon/:id',
-        component: PokemonViewComponent,
       },
       {
         path: 'add',

@@ -1,2 +1,20 @@
-<p>pages works!</p>
-<router-outlet></router-outlet>
+<mat-tab-group backgroundColor="primary" mat-align-tabs="center">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon>person</mat-icon>Profile
+        </ng-template>
+        <app-profile></app-profile>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon>catching_pokemon</mat-icon>Pokedex
+        </ng-template>
+        <app-pokedexview></app-pokedexview>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon>add</mat-icon>Add Pokemon
+        </ng-template>
+        <app-addpokemon></app-addpokemon>
+    </mat-tab>
+</mat-tab-group>

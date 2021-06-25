@@ -5,17 +5,16 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { PokedexViewComponent } from './pokedexview/pokedexview.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddPokemonComponent } from './addpokemon/addpokemon.component';
-import { PokemonViewComponent } from './pokemonview/pokemonview.component';
 import { PagesComponent } from './pages.component';
+import { MaterialModule } from '../material.module';
 
 @NgModule({
   declarations: [
     PokedexViewComponent,
     ProfileComponent,
     AddPokemonComponent,
-    PokemonViewComponent,
     PagesComponent,
   ],
-  imports: [CommonModule, PagesRoutingModule],
+  imports: [CommonModule, PagesRoutingModule, MaterialModule],
 })
 export class PagesModule {}
