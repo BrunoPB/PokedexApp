@@ -3,3 +3,12 @@ mat-tab-group {
   background-size: contain;
   height: 100%;
 }
+
+.profile,
+.pokedexview,
+.addpokemon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}

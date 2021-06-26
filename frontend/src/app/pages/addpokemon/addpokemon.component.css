@@ -1,0 +1,39 @@
+main {
+  padding: 20px 40px;
+  border: none;
+  border-radius: 30px;
+  background-color: lightslategray;
+}
+
+.top-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10%;
+}
+
+.bottom-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+img {
+  width: 300px;
+}
+
+.poke-info {
+  display: grid;
+  grid-template: 1fr 1fr 1fr / 1fr 1fr;
+  gap: 10%;
+}
+
+p {
+  font-size: 18px;
+}
+
+.add {
+  width: 100%;
+}

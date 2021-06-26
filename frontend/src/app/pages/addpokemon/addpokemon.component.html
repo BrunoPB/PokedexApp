@@ -1,1 +1,27 @@
-<p>addpokemon works!</p>
+<main>
+    <div class="top-div">
+        <form class="byName">
+            <mat-form-field appearance="outline">
+                <mat-label>Search by name</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <button mat-button color="basic">
+                <mat-icon>search</mat-icon>
+            </button>
+        </form>
+        <button mat-raised-button color="primary">Search for random</button>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="bottom-div">
+        <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/150.png">
+        <mat-card class="poke-info">
+            <p>Nº:</p>
+            <p>#150</p>
+            <p>Name:</p>
+            <p>Mewtwo</p>
+            <p>Region:</p>
+            <p>Kanto</p>
+        </mat-card>
+    </div>
+    <button class="add" mat-raised-button color="accent">Add Pokemon</button>
+</main>

@@ -1,0 +1,56 @@
+main {
+  padding: 20px 40px;
+  border: none;
+  border-radius: 30px;
+  background-color: lightslategray;
+}
+
+mat-divider {
+  margin-bottom: 5px;
+}
+
+mat-form-field {
+  width: 100%;
+  max-width: 500px;
+}
+
+button {
+  padding: 5px 15px;
+  width: 100%;
+  height: min-content;
+  font-size: 15px;
+}
+
+p {
+  font-size: 20px;
+}
+
+.pokperfil-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 5%;
+}
+
+.img {
+  display: flex;
+  justify-content: flex-end;
+}
+
+img {
+  width: 25%;
+}
+
+.user-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: 5%;
+}
+
+.password-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 5%;
+}

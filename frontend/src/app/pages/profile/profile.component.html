@@ -1,1 +1,47 @@
-<p>profile works!</p>
+<main>
+    <form class="pokperfil-form">
+        <div class="img">
+            <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/384.png">
+        </div>
+        <p class="pokperfil-pokemon">#384 - Rayquaza</p>
+        <mat-form-field appearance="outline">
+            <mat-label>Profile Pokemon</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <button mat-raised-button color="accent">Change profile Pokemon</button>
+    </form>
+    <mat-divider></mat-divider>
+    <form class="user-form">
+        <p class="user-title">Change Username</p>
+        <div class="user-input">
+            <mat-form-field appearance="outline">
+                <mat-label>New Username</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <button mat-raised-button color="accent">Change Username</button>
+        </div>
+    </form>
+    <mat-divider></mat-divider>
+    <form class="password-form">
+        <p class="password-title">Change Password</p>
+        <div class="password-div">
+            <mat-form-field appearance="outline">
+                <mat-label>New Password</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Current Password</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Confirm new Password</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <button mat-raised-button color="accent">Change Password</button>
+        </div>
+    </form>
+    <mat-divider></mat-divider>
+    <form class="logout-form">
+        <button mat-raised-button color="warn" routerLink="../  ">Logout</button>
+    </form>
+</main>

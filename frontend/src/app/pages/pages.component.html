@@ -1,20 +1,26 @@
-<mat-tab-group backgroundColor="primary" mat-align-tabs="center">
+<mat-tab-group color="warn" backgroundColor="primary" mat-align-tabs="center" mat-stretch-tabs>
     <mat-tab>
         <ng-template mat-tab-label>
-            <mat-icon>person</mat-icon>Profile
+            <mat-icon>catching_pokemon</mat-icon> Pokedex
         </ng-template>
-        <app-profile></app-profile>
+        <div class="pokedexview">
+            <app-pokedexview></app-pokedexview>
+        </div>
     </mat-tab>
     <mat-tab>
         <ng-template mat-tab-label>
-            <mat-icon>catching_pokemon</mat-icon>Pokedex
+            <mat-icon>add</mat-icon> Add Pokemon
         </ng-template>
-        <app-pokedexview></app-pokedexview>
+        <div class="addpokemon">
+            <app-addpokemon></app-addpokemon>
+        </div>
     </mat-tab>
     <mat-tab>
         <ng-template mat-tab-label>
-            <mat-icon>add</mat-icon>Add Pokemon
+            <mat-icon>person</mat-icon> IKazart
         </ng-template>
-        <app-addpokemon></app-addpokemon>
+        <div class="profile">
+            <app-profile></app-profile>
+        </div>
     </mat-tab>
 </mat-tab-group>
