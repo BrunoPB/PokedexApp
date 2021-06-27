@@ -3,4 +3,77 @@ main {
   border: none;
   border-radius: 30px;
   background-color: lightslategray;
+  display: grid;
+  grid-template: 1fr 5fr / 3fr 1fr;
+  justify-content: center;
+  column-gap: 5%;
+}
+
+div {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/*TOP LEFT DIV*/
+.top-left-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+  width: 100%;
+}
+
+.top-left-div,
+.bottom-right-div {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 5px;
+}
+
+.top-left-div mat-form-field {
+  width: 100%;
+}
+
+/*TOP RIGHT DIV*/
+
+/*BOTTOM LEFT DIV*/
+
+table {
+  overflow-y: scroll;
+}
+
+/*BOTTOM RIGHT DIV*/
+
+.bottom-right-div {
+  display: grid;
+  grid-template-rows: 3fr 2fr;
+  gap: 3px;
+}
+
+mat-divider {
+  padding: 0;
+  margin: 3px 0;
+}
+
+/*Filter Div*/
+
+/*Qtde Pokemon Div*/
+
+.bottom-right-div p,
+.bottom-right-div h3 {
+  margin: 1px 0;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+.qtde-regions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 5px;
+}
+
+.oqtde {
+  font-weight: bold;
 }

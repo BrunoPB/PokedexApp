@@ -1,3 +1,63 @@
 <main>
-    <p>pokedexview works!</p>
+    <div class="top-left-div">
+        <mat-form-field appearance="outline">
+            <mat-label>Search Pokemon</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <button mat-button color="basic">
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
+    <div class="top-right-div">
+        <mat-form-field appearance="fill">
+            <mat-label>Order By</mat-label>
+            <mat-select value="Number">
+                <mat-option value="Number">Number</mat-option>
+                <mat-option value="Name">Name</mat-option>
+                <mat-option value="HP">HP</mat-option>
+                <mat-option value="Attack">Attack</mat-option>
+                <mat-option value="Total Stats">Total Stats</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="bottom-left-div">
+        <!-- <table mat-table matSort>
+            <ng-container matColumnDef="Nº">
+                <th mat-header *matHeaderCellDef mat-sort-header>Nº</th>
+                <td mat-cell>384</td>
+            </ng-container>
+            <ng-container matColumnDef="Name">
+                <th mat-header *matHeaderCellDef mat-sort-header>Name</th>
+                <td mat-cell>Rayquaza</td>
+            </ng-container>
+            <ng-container matColumnDef="Region">
+                <th mat-header *matHeaderCellDef mat-sort-header>Region</th>
+                <td mat-cell>Hoenn</td>
+            </ng-container>
+            <tr mat-header-row></tr>
+            <tr mat-row></tr>
+        </table> -->
+    </div>
+    <div class="bottom-right-div">
+        <div class="filter-div">
+            <mat-form-field appearance="outline">
+                <input matInput>
+            </mat-form-field>
+        </div>
+        <div class="qtde-pokemon-div">
+            <mat-divider></mat-divider>
+            <h3>Pokemons in Pokedex:</h3>
+            <div class="qtde-regions">
+                <p class="nregion">Kanto: 34</p>
+                <p class="nregion">Johto: 2</p>
+                <p class="nregion">Hoenn: 23</p>
+                <p class="nregion">Sinnoh: 14</p>
+                <p class="nregion">Unova: 12</p>
+                <p class="nregion">Kalos: 6</p>
+                <p class="nregion">Alola: 27</p>
+            </div>
+            <p class="oqtde">Lengadaries: 2</p>
+            <p class="oqtde">Nation Dex: {{34+2+23+14+12+6+27}}</p>
+        </div>
+    </div>
 </main>
