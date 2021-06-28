@@ -47,6 +47,13 @@ public class Usuario {
         this.PokPerfil = pokperfil;
     }
 
+    public Usuario(int id, String nome, String senha) {
+        this.ID = id;
+        this.Nome = nome;
+        this.Senha = senha;
+        this.PokPerfil = 0;
+    }
+
     public Usuario(Usuario usuario) {
         this.ID = usuario.ID;
         this.Nome = usuario.Nome;

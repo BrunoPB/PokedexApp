@@ -10,7 +10,7 @@ public class DAO {
     private String senha = "Acessosql#Dex";
     private Connection conexao = null;
 
-    public DAO() {
+    public void connect() {
         try {
             Class.forName(driver);
         } catch (Exception e) {
