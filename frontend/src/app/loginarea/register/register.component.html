@@ -1,21 +1,25 @@
 <div class="background">
     <mat-card>
-        <form>
+        <form #RegisterForm="ngForm" (ngSubmit)="onSubmit()">
             <mat-card-content>
                 <mat-card-title>Register!</mat-card-title>
                 <mat-form-field appearance="outline">
                     <mat-label>Username</mat-label>
-                    <input matInput type="text">
+                    <input matInput type="text" [(ngModel)]="usuario.nome" name="usuario" value="" #Usuario="ngModel"
+                        required maxlength="30">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Password</mat-label>
-                    <input matInput type="password">
+                    <input matInput type="password" [(ngModel)]="usuario.senha" name="senha" value="" #Senha="ngModel"
+                        required maxlength="30">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Confirm password</mat-label>
-                    <input matInput type="password">
+                    <input matInput type="password" [(ngModel)]="confirmSenha" name="csenha" value="" #cSenha="ngModel"
+                        required maxlength="30">
                 </mat-form-field>
-                <button class="register-button" mat-raised-button color="accent">Register</button>
+                <button class="register-button" mat-raised-button color="accent" type="submit"
+                    [disabled]="!RegisterForm.valid">Register</button>
             </mat-card-content>
         </form>
         <button class="cancel-button" mat-raised-button color="primary" routerLink="../login">Cancel</button>

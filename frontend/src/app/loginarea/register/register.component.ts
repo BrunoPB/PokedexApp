@@ -1,15 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from 'src/interfaces/usuario.model';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
+  usuario: Usuario = {
+    id: 1,
+    nome: '',
+    senha: '',
+  };
+  confirmSenha: string = '';
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  onSubmit() {
+    console.log(this.usuario);
   }
-
 }
