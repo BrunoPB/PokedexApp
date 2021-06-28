@@ -1,8 +1,11 @@
 package app.controllers;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
 import app.entities.Usuario;
 
 public class UsuarioController {
@@ -42,5 +45,22 @@ public class UsuarioController {
         } catch (SQLException e) {
             System.err.println("Erro ao executar o comando SQL => " + e.getMessage());
         }
+    }
+
+    public ArrayList<Usuario> readAll() {
+        String comandosql = "SELECT * FROM Usuario;";
+        ResultSet rs = null;
+        ArrayList<Usuario> QueryUsers = new ArrayList<>();
+        try {
+            rs = stat.executeQuery(comandosql);
+            while (rs.next()) {
+                Usuario user = new Usuario(rs.getInt("ID"), rs.getString("Nome"), rs.getString("Senha"),
+                        rs.getInt("PokPerfil"));
+                QueryUsers.add(user);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao fazer Query => " + e.getMessage());
+        }
+        return QueryUsers;
     }
 }

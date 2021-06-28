@@ -1,8 +1,10 @@
 package app.controllers;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import app.entities.Pokemon;
 
@@ -55,5 +57,32 @@ public class PokemonController {
         } catch (SQLException e) {
             System.err.println("Erro ao executar o comando => " + e.getMessage());
         }
+    }
+
+    public ArrayList<Pokemon> readAll() {
+        String comandosql = "SELECT * FROM Pokemon;";
+        ResultSet rs = null;
+        ArrayList<Pokemon> QueryPokemons = new ArrayList<>();
+        try {
+            rs = stat.executeQuery(comandosql);
+            while (rs.next()) {
+                int id = rs.getInt("ID"), numero = rs.getInt("Numero"), hp = rs.getInt("HP"),
+                        attack = rs.getInt("Attack"), defense = rs.getInt("Defense"), spatk = rs.getInt("Sp. Atk"),
+                        spdef = rs.getInt("Sp. Def"), speed = rs.getInt("Speed");
+                String nome = rs.getString("Nome"), tipo1 = rs.getString("Tipo1"), tipo2 = rs.getString("Tipo2"),
+                        regiao = rs.getString("Regiao");
+
+                boolean mega = rs.getString("Mega").equals("T") ? true : false,
+                        lendario = rs.getString("Lendario").equals("T") ? true : false;
+
+                Pokemon poke = new Pokemon(id, numero, nome, tipo1, tipo2, hp, attack, defense, spatk, spdef, speed,
+                        mega, lendario, regiao);
+
+                QueryPokemons.add(poke);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao fazer Query => " + e.getMessage());
+        }
+        return QueryPokemons;
     }
 }
