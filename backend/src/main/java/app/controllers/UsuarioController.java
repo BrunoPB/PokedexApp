@@ -10,6 +10,7 @@ import app.entities.Usuario;
 
 public class UsuarioController {
     Statement stat = null;
+    ResultSet rs = null;
 
     public UsuarioController(Connection conexao) {
         try {
@@ -49,7 +50,6 @@ public class UsuarioController {
 
     public ArrayList<Usuario> readAll() {
         String comandosql = "SELECT * FROM Usuario;";
-        ResultSet rs = null;
         ArrayList<Usuario> QueryUsers = new ArrayList<>();
         try {
             rs = stat.executeQuery(comandosql);
@@ -62,5 +62,31 @@ public class UsuarioController {
             System.err.println("Erro ao fazer Query => " + e.getMessage());
         }
         return QueryUsers;
+    }
+
+    public Usuario readByID(int id) {
+        String comandosql = ("SELECT * FROM Usuario WHERE ID = " + id + ";");
+        Usuario user = null;
+        try {
+            rs = stat.executeQuery(comandosql);
+            rs.next();
+            user = new Usuario(id, rs.getString("Nome"), rs.getString("Senha"), rs.getInt("PokPerfil"));
+        } catch (SQLException e) {
+            System.err.println("Erro ao fazer Query => " + e.getMessage());
+        }
+        return user;
+    }
+
+    public Usuario readByName(String nome) {
+        String comandosql = ("SELECT * FROM Usuario WHERE Nome = '" + nome + "';");
+        Usuario user = null;
+        try {
+            rs = stat.executeQuery(comandosql);
+            rs.next();
+            user = new Usuario(rs.getInt("ID"), nome, rs.getString("Senha"), rs.getInt("PokPerfil"));
+        } catch (SQLException e) {
+            System.err.println("Erro ao fazer Query => " + e.getMessage());
+        }
+        return user;
     }
 }

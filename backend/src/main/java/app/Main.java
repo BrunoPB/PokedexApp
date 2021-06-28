@@ -57,6 +57,45 @@ public class Main {
         // System.out.println("=====================================");
         // }
 
+        // Usuario userByID = contUser.readByID(3);
+        // System.out.println("=====================================");
+        // System.out.println("ID: " + userByID.getID());
+        // System.out.println("Nome: " + userByID.getNome());
+        // System.out.println("Senha: " + userByID.getSenha());
+        // System.out.println("PokPerfil: " + userByID.getPokPerfil());
+        // System.out.println("=====================================");
+
+        // Usuario userByName = contUser.readByName("BrunowLOL");
+        // System.out.println("=====================================");
+        // System.out.println("ID: " + userByName.getID());
+        // System.out.println("Nome: " + userByName.getNome());
+        // System.out.println("Senha: " + userByName.getSenha());
+        // System.out.println("PokPerfil: " + userByName.getPokPerfil());
+        // System.out.println("=====================================");
+
+        // System.out.println(contRelac.existRelationByIDs(1, 384));
+        // System.out.println(contRelac.existRelationByNames("IKazart", "Rayquaza"));
+        // System.out.println(contRelac.existRelationByNames("IKazart", "Mewtwo"));
+        // System.out.println(contRelac.existRelationByIDs(3, 150));
+
+        // Pokemon poke = contPoke.readByName("Mewtwo");
+        // System.out.println("=====================================");
+        // System.out.println("ID: " + poke.getID());
+        // System.out.println("Numero: " + poke.getNumero());
+        // System.out.println("Nome: " + poke.getNome());
+        // System.out.println("Tipo 1: " + poke.getTipo1());
+        // System.out.println("Tipo 2: " + poke.getTipo2());
+        // System.out.println("HP: " + poke.getHP());
+        // System.out.println("Attack: " + poke.getAttack());
+        // System.out.println("Defense: " + poke.getDefense());
+        // System.out.println("Sp. Atk: " + poke.getSpAtk());
+        // System.out.println("Sp. Def: " + poke.getSpDef());
+        // System.out.println("Speed: " + poke.getSpeed());
+        // System.out.println("Mega: " + poke.isMega());
+        // System.out.println("Lendario: " + poke.isLendario());
+        // System.out.println("Regiao: " + poke.getRegiao());
+        // System.out.println("=====================================");
+
         try {
             dao.getConexao().close();
         } catch (SQLException e) {

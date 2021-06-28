@@ -10,6 +10,7 @@ import app.entities.Relacionamento;
 
 public class RelacionamentoController {
     Statement stat = null;
+    ResultSet rs = null;
 
     public RelacionamentoController(Connection conexao) {
         try {
@@ -41,7 +42,6 @@ public class RelacionamentoController {
 
     public ArrayList<Relacionamento> readAll() {
         String comandosql = "SELECT * FROM Relacionamento;";
-        ResultSet rs = null;
         ArrayList<Relacionamento> QueryRelacs = new ArrayList<>();
         try {
             rs = stat.executeQuery(comandosql);
@@ -53,5 +53,36 @@ public class RelacionamentoController {
             System.err.println("Erro ao fazer Query => " + e.getMessage());
         }
         return QueryRelacs;
+    }
+
+    public boolean existRelationByIDs(int idUser, int idPoke) {
+        boolean exists = false;
+        String comandosql = ("SELECT * FROM Relacionamento WHERE Usuario_ID = " + idUser + " AND Pokemon_ID = " + idPoke
+                + ";");
+        try {
+            rs = stat.executeQuery(comandosql);
+            if (rs.next()) {
+                exists = true;
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao fazer Query => " + e.getMessage());
+        }
+        return exists;
+    }
+
+    public boolean existRelationByNames(String user, String poke) {
+        boolean exists = false;
+        String comandosql = ("SELECT Usuario.Nome, Pokemon.Nome FROM Usuario JOIN Relacionamento ON Usuario.ID = Relacionamento.Usuario_ID JOIN Pokemon ON Pokemon.ID = Relacionamento.Pokemon_ID WHERE Usuario.Nome = '"
+                + user + "' AND Pokemon.Nome = '" + poke + "';");
+        try {
+            rs = stat.executeQuery(comandosql);
+            if (rs.next()) {
+                exists = true;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao fazer Query => " + e.getMessage());
+        }
+        return exists;
     }
 }
