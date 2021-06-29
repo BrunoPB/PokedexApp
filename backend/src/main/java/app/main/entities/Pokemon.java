@@ -1,19 +1,51 @@
 package app.main.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity(name = "Pokemon")
 public class Pokemon {
+    @Id
     private int ID;
+
+    @Column(nullable = false, name = "Numero")
     private int Numero;
+
+    @Column(nullable = false, name = "Nome", length = 30)
     private String Nome;
+
+    @Column(nullable = false, name = "Tipo1", length = 10)
     private String Tipo1;
+
+    @Column(nullable = true, name = "Tipo2", length = 10)
     private String Tipo2;
+
+    @Column(nullable = false, name = "HP")
     private int HP;
+
+    @Column(nullable = false, name = "Attack")
     private int Attack;
+
+    @Column(nullable = false, name = "Defense")
     private int Defense;
+
+    @Column(nullable = false, name = "Sp. Atk")
     private int SpAtk;
+
+    @Column(nullable = false, name = "Sp. Def")
     private int SpDef;
+
+    @Column(nullable = false, name = "Speed")
     private int Speed;
+
+    @Column(nullable = false, name = "Mega")
     private boolean Mega;
+
+    @Column(nullable = false, name = "Lendario")
     private boolean Lendario;
+
+    @Column(nullable = false, name = "Regiao", length = 15)
     private String Regiao;
 
     // Constructors

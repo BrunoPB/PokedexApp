@@ -1,9 +1,22 @@
 package app.main.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity(name = "Usuario")
 public class Usuario {
+
+    @Id
     private int ID;
+
+    @Column(nullable = false, length = 30, name = "Nome")
     private String Nome;
+
+    @Column(nullable = false, length = 30, name = "Senha")
     private String Senha;
+
+    @Column(nullable = true, name = "PokPerfil")
     private int PokPerfil;
 
     // Getters and Setters

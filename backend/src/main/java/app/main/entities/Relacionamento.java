@@ -1,7 +1,17 @@
 package app.main.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.Id;
+
+@Entity(name = "Relacionamento")
 public class Relacionamento {
+
+    @Id
+    // @ForeignKey(foreignKeyDefinition = "Usuario_ID")
     private int Usuario_ID;
+
+    // @ForeignKey(foreignKeyDefinition = "Pokemon_ID")
     private int Pokemon_ID;
 
     // Getters and Setter
