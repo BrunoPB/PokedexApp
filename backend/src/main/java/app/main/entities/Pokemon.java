@@ -1,18 +1,23 @@
 package app.main.entities;
 
+import java.util.Set;
+
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity(name = "Pokemon")
 public class Pokemon {
+
     @Id
-    private int ID;
+    @Column(nullable = false, name = "Numero", unique = true)
+    private Integer Numero;
 
-    @Column(nullable = false, name = "Numero")
-    private int Numero;
-
-    @Column(nullable = false, name = "Nome", length = 30)
+    @Column(nullable = false, name = "Nome", length = 30, unique = true)
     private String Nome;
 
     @Column(nullable = false, name = "Tipo1", length = 10)
@@ -22,22 +27,22 @@ public class Pokemon {
     private String Tipo2;
 
     @Column(nullable = false, name = "HP")
-    private int HP;
+    private Integer HP;
 
     @Column(nullable = false, name = "Attack")
-    private int Attack;
+    private Integer Attack;
 
     @Column(nullable = false, name = "Defense")
-    private int Defense;
+    private Integer Defense;
 
-    @Column(nullable = false, name = "Sp. Atk")
-    private int SpAtk;
+    @Column(nullable = false, name = "SpAtk")
+    private Integer SpAtk;
 
-    @Column(nullable = false, name = "Sp. Def")
-    private int SpDef;
+    @Column(nullable = false, name = "SpDef")
+    private Integer SpDef;
 
     @Column(nullable = false, name = "Speed")
-    private int Speed;
+    private Integer Speed;
 
     @Column(nullable = false, name = "Mega")
     private boolean Mega;
@@ -48,10 +53,17 @@ public class Pokemon {
     @Column(nullable = false, name = "Regiao", length = 15)
     private String Regiao;
 
+    @ManyToMany(mappedBy = "Pokemons")
+    Set<Usuario> Usuarios;
+
     // Constructors
-    public Pokemon(int id, int numero, String nome, String tipo1, String tipo2, int hp, int attack, int defense,
-            int spatk, int spdef, int speed, boolean mega, boolean lendario, String regiao) {
-        this.ID = id;
+
+    public Pokemon() {
+
+    }
+
+    public Pokemon(Integer numero, String nome, String tipo1, String tipo2, Integer hp, Integer attack, Integer defense,
+            Integer spatk, Integer spdef, Integer speed, boolean mega, boolean lendario, String regiao) {
         this.Numero = numero;
         this.Nome = nome;
         this.Tipo1 = tipo1;
@@ -68,7 +80,6 @@ public class Pokemon {
     }
 
     public Pokemon(Pokemon pokemon) {
-        this.ID = pokemon.ID;
         this.Numero = pokemon.Numero;
         this.Nome = pokemon.Nome;
         this.Tipo1 = pokemon.Tipo1;
@@ -85,19 +96,11 @@ public class Pokemon {
     }
 
     // Getters and Setters
-    public int getID() {
-        return this.ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public int getNumero() {
+    public Integer getNumero() {
         return this.Numero;
     }
 
-    public void setNumero(int Numero) {
+    public void setNumero(Integer Numero) {
         this.Numero = Numero;
     }
 
@@ -125,51 +128,51 @@ public class Pokemon {
         this.Tipo2 = Tipo2;
     }
 
-    public int getHP() {
+    public Integer getHP() {
         return this.HP;
     }
 
-    public void setHP(int HP) {
+    public void setHP(Integer HP) {
         this.HP = HP;
     }
 
-    public int getAttack() {
+    public Integer getAttack() {
         return this.Attack;
     }
 
-    public void setAttack(int Attack) {
+    public void setAttack(Integer Attack) {
         this.Attack = Attack;
     }
 
-    public int getDefense() {
+    public Integer getDefense() {
         return this.Defense;
     }
 
-    public void setDefense(int Defense) {
+    public void setDefense(Integer Defense) {
         this.Defense = Defense;
     }
 
-    public int getSpAtk() {
+    public Integer getSpAtk() {
         return this.SpAtk;
     }
 
-    public void setSpAtk(int SpAtk) {
+    public void setSpAtk(Integer SpAtk) {
         this.SpAtk = SpAtk;
     }
 
-    public int getSpDef() {
+    public Integer getSpDef() {
         return this.SpDef;
     }
 
-    public void setSpDef(int SpDef) {
+    public void setSpDef(Integer SpDef) {
         this.SpDef = SpDef;
     }
 
-    public int getSpeed() {
+    public Integer getSpeed() {
         return this.Speed;
     }
 
-    public void setSpeed(int Speed) {
+    public void setSpeed(Integer Speed) {
         this.Speed = Speed;
     }
 

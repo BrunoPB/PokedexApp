@@ -1,30 +1,43 @@
 package app.main.entities;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity(name = "Usuario")
 public class Usuario {
 
     @Id
-    private int ID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
+    private Integer ID;
 
-    @Column(nullable = false, length = 30, name = "Nome")
+    @Column(nullable = false, length = 30, name = "Nome", unique = true)
     private String Nome;
 
     @Column(nullable = false, length = 30, name = "Senha")
     private String Senha;
 
     @Column(nullable = true, name = "PokPerfil")
-    private int PokPerfil;
+    private Integer PokPerfil;
+
+    @ManyToMany
+    @JoinTable(name = "Relacionamento", joinColumns = @JoinColumn(name = "ID_Usuario"), inverseJoinColumns = @JoinColumn(name = "N_Pokemon"))
+    Set<Pokemon> Pokemons;
 
     // Getters and Setters
-    public int getID() {
+    public Integer getID() {
         return this.ID;
     }
 
-    public void setID(int ID) {
+    public void setID(Integer ID) {
         this.ID = ID;
     }
 
@@ -44,27 +57,27 @@ public class Usuario {
         this.Senha = Senha;
     }
 
-    public int getPokPerfil() {
+    public Integer getPokPerfil() {
         return this.PokPerfil;
     }
 
-    public void setPokPerfil(int PokPerfil) {
+    public void setPokPerfil(Integer PokPerfil) {
         this.PokPerfil = PokPerfil;
     }
 
     // Constructors
-    public Usuario(int id, String nome, String senha, int pokperfil) {
+    public Usuario(Integer id, String nome, String senha, Integer pokperfil) {
         this.ID = id;
         this.Nome = nome;
         this.Senha = senha;
         this.PokPerfil = pokperfil;
     }
 
-    public Usuario(int id, String nome, String senha) {
+    public Usuario(Integer id, String nome, String senha) {
         this.ID = id;
         this.Nome = nome;
         this.Senha = senha;
-        this.PokPerfil = 0;
+        this.PokPerfil = null;
     }
 
     public Usuario(Usuario usuario) {

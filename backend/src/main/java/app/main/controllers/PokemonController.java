@@ -1,33 +1,59 @@
 package app.main.controllers;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.main.entities.Pokemon;
-import app.main.services.PokemonService;
+import app.main.repositories.PokemonRepository;
 
 @RestController
-@RequestMapping(path = "/api/pokemon")
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/pokemon")
 public class PokemonController {
 
-    private final PokemonService pokemonService;
+    private final PokemonRepository pokemonRepository;
 
     @Autowired
-    public PokemonController(PokemonService pokemonService) {
-        this.pokemonService = pokemonService;
+    public PokemonController(PokemonRepository pokemonRepository) {
+        this.pokemonRepository = pokemonRepository;
     }
 
-    @GetMapping
+    @GetMapping(path = "/get")
+    @ResponseBody
     public List<Pokemon> readAll() {
-        return pokemonService.readAll();
+        List<Pokemon> lista = pokemonRepository.findAll();
+        for (Integer i = 0; i < lista.size(); i++) {
+            System.out.println(lista.get(i).getNome());
+            System.out.println(lista.get(i).getNumero());
+            System.out.println(lista.get(i).getTipo1());
+            System.out.println(lista.get(i).getRegiao());
+            System.out.println(lista.get(i));
+        }
+        return lista;
+    }
+
+    @PostMapping(path = "/post")
+    @ResponseBody
+    public Pokemon add(@RequestParam Integer numero, @RequestParam String nome, @RequestParam String tipo1,
+            @RequestParam(required = false) String tipo2, @RequestParam Integer hp, @RequestParam Integer attack,
+            @RequestParam Integer defense, @RequestParam Integer spatk, @RequestParam Integer spdef,
+            @RequestParam Integer speed, @RequestParam boolean mega, @RequestParam boolean lendario,
+            @RequestParam String regiao) {
+        Pokemon poke = new Pokemon(numero, nome, tipo1, tipo2, hp, attack, defense, spatk, spdef, speed, mega, lendario,
+                regiao);
+        pokemonRepository.save(poke);
+        return poke;
     }
 
     // Statement stat = null;
@@ -72,7 +98,7 @@ public class PokemonController {
     // doCUD(comandosql);
     // }
 
-    // public void delete(int id) {
+    // public void delete(Integer id) {
     // String comandosql = ("DELETE FROM Pokemon WHERE ID = " + id + ";");
     // doCUD(comandosql);
     // }
@@ -91,7 +117,8 @@ public class PokemonController {
     // try {
     // rs = stat.executeQuery(comandosql);
     // while (rs.next()) {
-    // int id = rs.getInt("ID"), numero = rs.getInt("Numero"), hp = rs.getInt("HP"),
+    // Integer id = rs.getInt("ID"), numero = rs.getInt("Numero"), hp =
+    // rs.getInt("HP"),
     // attack = rs.getInt("Attack"), defense = rs.getInt("Defense"), spatk =
     // rs.getInt("Sp. Atk"),
     // spdef = rs.getInt("Sp. Def"), speed = rs.getInt("Speed");
@@ -114,13 +141,13 @@ public class PokemonController {
     // return QueryPokemons;
     // }
 
-    // public Pokemon readByID(int id) {
+    // public Pokemon readByID(Integer id) {
     // String comandosql = ("SELECT * FROM Pokemon WHERE ID = " + id + ";");
     // Pokemon poke = null;
     // try {
     // rs = stat.executeQuery(comandosql);
     // rs.next();
-    // int numero = rs.getInt("Numero"), hp = rs.getInt("HP"), attack =
+    // Integer numero = rs.getInt("Numero"), hp = rs.getInt("HP"), attack =
     // rs.getInt("Attack"),
     // defense = rs.getInt("Defense"), spatk = rs.getInt("Sp. Atk"), spdef =
     // rs.getInt("Sp. Def"),
@@ -147,7 +174,8 @@ public class PokemonController {
     // try {
     // rs = stat.executeQuery(comandosql);
     // rs.next();
-    // int id = rs.getInt("ID"), numero = rs.getInt("Numero"), hp = rs.getInt("HP"),
+    // Integer id = rs.getInt("ID"), numero = rs.getInt("Numero"), hp =
+    // rs.getInt("HP"),
     // attack = rs.getInt("Attack"),
     // defense = rs.getInt("Defense"), spatk = rs.getInt("Sp. Atk"), spdef =
     // rs.getInt("Sp. Def"),

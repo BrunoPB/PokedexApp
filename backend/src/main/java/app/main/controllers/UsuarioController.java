@@ -1,35 +1,36 @@
 package app.main.controllers;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.main.entities.Usuario;
-import app.main.services.UsuarioService;
+import app.main.repositories.UsuarioRepository;
 
 @RestController
-@RequestMapping(path = "/api/usuario")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UsuarioController {
 
-    private final UsuarioService usuarioService;
+    private final UsuarioRepository usuarioRepository;
 
     @Autowired
-    public UsuarioController(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
+    public UsuarioController(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
     }
 
-    @GetMapping
+    @GetMapping("/usuarios")
     public List<Usuario> readAll() {
-        return usuarioService.readAll();
+        return usuarioRepository.findAll();
+    }
+
+    @PostMapping("/usuarios")
+    public void add(@RequestBody Usuario usuario) {
+        usuarioRepository.save(usuario);
     }
 
     // Statement stat = null;
@@ -60,7 +61,7 @@ public class UsuarioController {
     // doCUD(comandosql);
     // }
 
-    // public void delete(int id) {
+    // public void delete(Integer id) {
     // String comandosql = ("DELETE FROM Usuario WHERE ID = " + id + ";");
     // doCUD(comandosql);
     // }
@@ -91,7 +92,7 @@ public class UsuarioController {
     // }
 
     // @GetMapping(path = "/api/usuario/{id}")
-    // public Usuario readByID(@PathVariable("id") int id) {
+    // public Usuario readByID(@PathVariable("id") Integer id) {
     // String comandosql = ("SELECT * FROM Usuario WHERE ID = " + id + ";");
     // Usuario user = null;
     // try {
