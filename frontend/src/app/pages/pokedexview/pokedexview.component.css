@@ -7,6 +7,7 @@ main {
   grid-template: 1fr 5fr / 3fr 1fr;
   justify-content: center;
   column-gap: 5%;
+  max-height: 540px;
 }
 
 div {
@@ -38,8 +39,69 @@ div {
 
 /*BOTTOM LEFT DIV*/
 
+.bottom-left-div {
+  overflow: auto;
+  margin-top: 10px;
+}
+
+/* .bottom-left-div::-webkit-scrollbar {
+  display: none;
+} */
+
 table {
-  overflow-y: scroll;
+  width: 100%;
+  background-color: lightslategray;
+}
+
+.trhover:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+img {
+  width: 100%;
+}
+
+.mat-column-imagem {
+  text-align: start;
+  width: 10%;
+}
+
+.mat-column-nome {
+  text-align: center;
+  width: 24%;
+}
+
+.mat-column-numero {
+  text-align: center;
+  width: 23%;
+}
+
+.mat-column-regiao {
+  text-align: center;
+  width: 23%;
+}
+
+.mat-column-edit {
+  text-align: end;
+  width: 20%;
+}
+
+/*Scrollbar layout*/
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: radial-gradient(
+    circle,
+    lightslategray 0%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  border-radius: 30px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
 }
 
 /*BOTTOM RIGHT DIV*/

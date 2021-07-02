@@ -7,5 +7,4 @@ import app.main.entities.Pokemon;
 
 @Repository
 public interface PokemonRepository extends JpaRepository<Pokemon, Integer> {
-
 }

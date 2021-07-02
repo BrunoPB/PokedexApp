@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from 'src/interfaces/usuario.model';
+import { Usuario } from 'src/app/interfaces/usuario.model';
 
 @Component({
   selector: 'app-login',

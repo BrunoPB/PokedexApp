@@ -1,12 +1,10 @@
 package app.main.entities;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
@@ -54,12 +52,27 @@ public class Pokemon {
     private String Regiao;
 
     @ManyToMany(mappedBy = "Pokemons")
-    Set<Usuario> Usuarios;
+    private List<Usuario> Usuarios = new ArrayList<Usuario>();
 
     // Constructors
-
     public Pokemon() {
+    }
 
+    public Pokemon(Integer numero, String nome, String tipo1, Integer hp, Integer attack, Integer defense,
+            Integer spatk, Integer spdef, Integer speed, boolean mega, boolean lendario, String regiao) {
+        this.Numero = numero;
+        this.Nome = nome;
+        this.Tipo1 = tipo1;
+        this.Tipo2 = null;
+        this.HP = hp;
+        this.Attack = attack;
+        this.Defense = defense;
+        this.SpAtk = spatk;
+        this.SpDef = spdef;
+        this.Speed = speed;
+        this.Mega = mega;
+        this.Lendario = lendario;
+        this.Regiao = regiao;
     }
 
     public Pokemon(Integer numero, String nome, String tipo1, String tipo2, Integer hp, Integer attack, Integer defense,

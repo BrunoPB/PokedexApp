@@ -1,6 +1,7 @@
 package app.main.entities;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +31,7 @@ public class Usuario {
 
     @ManyToMany
     @JoinTable(name = "Relacionamento", joinColumns = @JoinColumn(name = "ID_Usuario"), inverseJoinColumns = @JoinColumn(name = "N_Pokemon"))
-    Set<Pokemon> Pokemons;
+    private List<Pokemon> Pokemons = new ArrayList<Pokemon>();
 
     // Getters and Setters
     public Integer getID() {
