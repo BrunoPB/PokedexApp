@@ -49,7 +49,7 @@
                 </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-            <tr mat-row *matRowDef="let element; columns: displayedColumns;" (click)="testclickrow(element.nome)"
+            <tr mat-row *matRowDef="let element; columns: displayedColumns;" (click)="openDialog(element)"
                 class="trhover"></tr>
         </table>
     </div>

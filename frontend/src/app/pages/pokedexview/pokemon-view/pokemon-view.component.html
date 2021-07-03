@@ -1,0 +1,68 @@
+<main>
+    <div class="image-div">
+        <img [src]="getPokeImage(pokemon.numero)" alt="Error" class="main-img">
+    </div>
+    <div class="stats-div">
+        <p class="stats-text">HP: {{pokemon.hp}} </p>
+        <mat-progress-bar mode="determinate" [value]="progressBarCalculation(pokemon.hp, 'hp')"> </mat-progress-bar>
+        <p class="stats-text">Attack: {{pokemon.attack}} </p>
+        <mat-progress-bar mode="determinate" [value]="progressBarCalculation(pokemon.attack, 'atk')">
+        </mat-progress-bar>
+        <p class="stats-text">Defense: {{pokemon.defense}} </p>
+        <mat-progress-bar mode="determinate" [value]="progressBarCalculation(pokemon.defense, 'def')">
+        </mat-progress-bar>
+        <p class="stats-text">Special Attack: {{pokemon.spAtk}} </p>
+        <mat-progress-bar mode="determinate" [value]="progressBarCalculation(pokemon.spAtk, 'spa')"> </mat-progress-bar>
+        <p class="stats-text">Special Defense: {{pokemon.spDef}} </p>
+        <mat-progress-bar mode="determinate" [value]="progressBarCalculation(pokemon.spDef, 'spd')"> </mat-progress-bar>
+        <p class="stats-text">Speed: {{pokemon.speed}} </p>
+        <mat-progress-bar mode="determinate" [value]="progressBarCalculation(pokemon.speed, 'spe')"> </mat-progress-bar>
+    </div>
+    <div class="bottom-div">
+        <div class="bt-div">
+            <mat-divider></mat-divider>
+            <div class="info-div">
+                <div class="1-info-div d">
+                    <p class="info-text h">Name:</p>
+                    <p class="info-text i">{{pokemon.nome}}</p>
+                </div>
+                <div class="2-info-div d">
+                    <p class="info-text h">Number:</p>
+                    <p class="info-text i">{{pokemon.numero}}</p>
+                </div>
+                <div class="3-info-div d">
+                    <p class="info-text h">Type:</p>
+                    <div class="type-div">
+                        <p class="type" [style]="typeColor(pokemon.tipo1)">{{pokemon.tipo1}}</p>
+                        <p class="type" *ngIf="pokemon.tipo2!=null" [style]="typeColor(pokemon.tipo2)">{{pokemon.tipo2}}
+                        </p>
+                    </div>
+                </div>
+                <div class="4-info-div d">
+                    <p class="info-text h">Region:</p>
+                    <p class="info-text i">{{pokemon.regiao}}</p>
+                </div>
+                <div class="5-info-div d" *ngIf="pokemon.mega">
+                    <img [src]="getMegaImage(pokemon.numero)" alt="Error" class="mega-img">
+                    <p class="mega" [style]="typeColor(pokemon.tipo1)">Mega-{{pokemon.nome}}</p>
+                </div>
+                <div class="6-info-div d" *ngIf="pokemon.lendario">
+                    <p class="legendary">Legendary</p>
+                </div>
+            </div>
+        </div>
+        <footer class="buttons-div">
+            <button mat-raised-button color="basic" (click)="out()">
+                Go Back
+            </button>
+            <button mat-raised-button color="accent">
+                <mat-icon>catching_pokemon</mat-icon>
+                Set as Profile Pokemon
+            </button>
+            <button mat-raised-button color="warn">
+                <mat-icon>delete</mat-icon>
+                Delete
+            </button>
+        </footer>
+    </div>
+</main>

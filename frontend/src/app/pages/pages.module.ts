@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AddPokemonComponent } from './addpokemon/addpokemon.component';
 import { PagesComponent } from './pages.component';
 import { MaterialModule } from '../material.module';
+import { PokemonViewComponent } from './pokedexview/pokemon-view/pokemon-view.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { MaterialModule } from '../material.module';
     ProfileComponent,
     AddPokemonComponent,
     PagesComponent,
+    PokemonViewComponent,
   ],
   imports: [CommonModule, PagesRoutingModule, MaterialModule],
 })

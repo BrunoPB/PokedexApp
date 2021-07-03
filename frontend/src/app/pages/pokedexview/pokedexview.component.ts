@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Pokemon } from 'src/app/interfaces/pokemon.model';
-import { PokemonImagesService } from 'src/app/services/pokemon-images.service';
 import { PokemonService } from 'src/app/services/pokemon.service';
+import { RetrievePokeInfoService } from 'src/app/services/retrieve-poke-info.service';
+import { PokemonViewComponent } from './pokemon-view/pokemon-view.component';
 
 @Component({
   selector: 'app-pokedexview',
@@ -14,7 +16,8 @@ export class PokedexViewComponent implements OnInit {
 
   constructor(
     private pokeService: PokemonService,
-    private pokeimages: PokemonImagesService
+    private pokeimages: RetrievePokeInfoService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +30,10 @@ export class PokedexViewComponent implements OnInit {
     return this.pokeimages.getPokeImage(numero);
   }
 
-  testclickrow(nome: string) {
-    console.log(`Coluna pokemon: ${nome}`);
+  openDialog(pokemon: Pokemon) {
+    this.dialog.open(PokemonViewComponent, {
+      panelClass: 'custom-dialog-container',
+      data: { pokemon: pokemon },
+    });
   }
 }

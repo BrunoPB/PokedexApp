@@ -6,8 +6,8 @@ export interface Pokemon {
   hp: number;
   attack: number;
   defense: number;
-  spatk: number;
-  spdef: number;
+  spAtk: number;
+  spDef: number;
   speed: number;
   mega: boolean;
   lendario: boolean;
