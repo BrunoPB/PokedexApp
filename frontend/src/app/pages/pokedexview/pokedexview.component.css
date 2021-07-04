@@ -44,10 +44,6 @@ div {
   margin-top: 10px;
 }
 
-/* .bottom-left-div::-webkit-scrollbar {
-  display: none;
-} */
-
 table {
   width: 100%;
   background-color: lightslategray;
@@ -68,22 +64,22 @@ img {
 
 .mat-column-nome {
   text-align: center;
-  width: 24%;
+  width: 28%;
 }
 
 .mat-column-numero {
   text-align: center;
-  width: 23%;
+  width: 26%;
 }
 
 .mat-column-regiao {
   text-align: center;
-  width: 23%;
+  width: 26%;
 }
 
 .mat-column-edit {
   text-align: end;
-  width: 20%;
+  width: 10%;
 }
 
 /*Scrollbar layout*/

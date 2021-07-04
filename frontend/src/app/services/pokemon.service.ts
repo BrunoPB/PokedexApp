@@ -12,6 +12,6 @@ export class PokemonService {
   readonly url: string = 'http://localhost:8080';
 
   getPokemons(): Observable<Pokemon[]> {
-    return this.http.get<Pokemon[]>(`${this.url}/pokemon/get`);
+    return this.http.get<Pokemon[]>(`${this.url}/pokemons`);
   }
 }

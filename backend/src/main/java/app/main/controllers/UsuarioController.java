@@ -1,19 +1,26 @@
 package app.main.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.main.entities.Usuario;
 import app.main.repositories.UsuarioRepository;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin("localhost:4200")
+@RequestMapping("/usuarios")
 public class UsuarioController {
 
     private final UsuarioRepository usuarioRepository;
@@ -23,100 +30,44 @@ public class UsuarioController {
         this.usuarioRepository = usuarioRepository;
     }
 
-    @GetMapping("/usuarios")
+    @GetMapping()
     public List<Usuario> readAll() {
         return usuarioRepository.findAll();
     }
 
-    @PostMapping("/usuarios")
-    public void add(@RequestBody Usuario usuario) {
-        usuarioRepository.save(usuario);
+    @GetMapping(path = "/id/{id}")
+    @ResponseBody
+    public Usuario readOne(@PathVariable Integer id) {
+        return usuarioRepository.findById(id).get();
     }
 
-    // Statement stat = null;
-    // ResultSet rs = null;
+    @PostMapping()
+    @ResponseBody
+    public Usuario add(@RequestParam String nome, @RequestParam String senha,
+            @RequestParam(required = false) Integer pokperfil) {
+        Usuario user = new Usuario(nome, senha, pokperfil);
+        usuarioRepository.save(user);
+        return user;
+    }
 
-    // public UsuarioController(Connection conexao) {
-    // try {
-    // this.stat = conexao.createStatement();
-    // } catch (Exception e) {
-    // System.out.println("Erro criando o Statement => " + e.getMessage());
-    // }
-    // }
+    @PutMapping()
+    @ResponseBody
+    public Usuario update(@RequestParam String nome, @RequestParam String senha,
+            @RequestParam(required = false) Integer pokperfil) {
+        Usuario user = new Usuario(nome, senha, pokperfil);
+        usuarioRepository.save(user);
+        return user;
+    }
 
-    // public void add(Usuario user) {
-    // String comandosql = ("INSERT INTO Usuario (ID, Nome, Senha) VALUES (" +
-    // user.getID() + ", '" + user.getNome()
-    // + "', '" + user.getSenha() + "');");
-    // doCUD(comandosql);
-    // }
-
-    // public void update(Usuario user) {
-    // String comandosql = ("UPDATE Usuario SET Nome = '" + user.getNome() + "',
-    // Senha = '" + user.getSenha() + "'");
-    // if (user.getPokPerfil() > 0) {
-    // comandosql += (", PokPerfil = " + user.getPokPerfil());
-    // }
-    // comandosql += (" WHERE ID = " + user.getID() + ";");
-    // doCUD(comandosql);
-    // }
-
-    // public void delete(Integer id) {
-    // String comandosql = ("DELETE FROM Usuario WHERE ID = " + id + ";");
-    // doCUD(comandosql);
-    // }
-
-    // private void doCUD(String comandosql) {
-    // try {
-    // stat.executeUpdate(comandosql);
-    // } catch (SQLException e) {
-    // System.err.println("Erro ao executar o comando SQL => " + e.getMessage());
-    // }
-    // }
-
-    // public ArrayList<Usuario> readAll() {
-    // String comandosql = "SELECT * FROM Usuario;";
-    // ArrayList<Usuario> QueryUsers = new ArrayList<>();
-    // try {
-    // rs = stat.executeQuery(comandosql);
-    // while (rs.next()) {
-    // Usuario user = new Usuario(rs.getInt("ID"), rs.getString("Nome"),
-    // rs.getString("Senha"),
-    // rs.getInt("PokPerfil"));
-    // QueryUsers.add(user);
-    // }
-    // } catch (SQLException e) {
-    // System.err.println("Erro ao fazer Query => " + e.getMessage());
-    // }
-    // return QueryUsers;
-    // }
-
-    // @GetMapping(path = "/api/usuario/{id}")
-    // public Usuario readByID(@PathVariable("id") Integer id) {
-    // String comandosql = ("SELECT * FROM Usuario WHERE ID = " + id + ";");
-    // Usuario user = null;
-    // try {
-    // rs = stat.executeQuery(comandosql);
-    // rs.next();
-    // user = new Usuario(id, rs.getString("Nome"), rs.getString("Senha"),
-    // rs.getInt("PokPerfil"));
-    // } catch (SQLException e) {
-    // System.err.println("Erro ao fazer Query => " + e.getMessage());
-    // }
-    // return user;
-    // }
-
-    // public Usuario readByName(String nome) {
-    // String comandosql = ("SELECT * FROM Usuario WHERE Nome = '" + nome + "';");
-    // Usuario user = null;
-    // try {
-    // rs = stat.executeQuery(comandosql);
-    // rs.next();
-    // user = new Usuario(rs.getInt("ID"), nome, rs.getString("Senha"),
-    // rs.getInt("PokPerfil"));
-    // } catch (SQLException e) {
-    // System.err.println("Erro ao fazer Query => " + e.getMessage());
-    // }
-    // return user;
-    // }
+    @DeleteMapping(path = "/delete/{id}")
+    @ResponseBody
+    public Optional<Usuario> delete(@PathVariable Integer id) {
+        Optional<Usuario> item = usuarioRepository.findById(id);
+        if (item.isPresent()) {
+            usuarioRepository.deleteById(id);
+        } else {
+            System.err.println("Erro => Usuario inexistente. Nao foi possivel exclui-lo.");
+        }
+        return item;
+    }
 }

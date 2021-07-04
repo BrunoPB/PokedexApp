@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTable } from '@angular/material/table';
 import { Pokemon } from 'src/app/interfaces/pokemon.model';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { RetrievePokeInfoService } from 'src/app/services/retrieve-poke-info.service';
@@ -13,6 +14,8 @@ import { PokemonViewComponent } from './pokemon-view/pokemon-view.component';
 export class PokedexViewComponent implements OnInit {
   tablePokes: Pokemon[];
   displayedColumns = ['imagem', 'nome', 'numero', 'regiao', 'edit'];
+
+  @ViewChild(MatTable) table: MatTable<Pokemon>;
 
   constructor(
     private pokeService: PokemonService,
@@ -35,5 +38,15 @@ export class PokedexViewComponent implements OnInit {
       panelClass: 'custom-dialog-container',
       data: { pokemon: pokemon },
     });
+  }
+
+  deletePoke(numero: number) {
+    for (let i = 0; i < this.tablePokes.length; i++) {
+      if (this.tablePokes[i].numero === numero) {
+        this.tablePokes.splice(i, 1);
+        i = this.tablePokes.length;
+        this.table.renderRows();
+      }
+    }
   }
 }

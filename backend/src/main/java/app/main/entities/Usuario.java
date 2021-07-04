@@ -67,15 +67,17 @@ public class Usuario {
     }
 
     // Constructors
-    public Usuario(Integer id, String nome, String senha, Integer pokperfil) {
-        this.ID = id;
+    public Usuario() {
+
+    }
+
+    public Usuario(String nome, String senha, Integer pokperfil) {
         this.Nome = nome;
         this.Senha = senha;
         this.PokPerfil = pokperfil;
     }
 
-    public Usuario(Integer id, String nome, String senha) {
-        this.ID = id;
+    public Usuario(String nome, String senha) {
         this.Nome = nome;
         this.Senha = senha;
         this.PokPerfil = null;
