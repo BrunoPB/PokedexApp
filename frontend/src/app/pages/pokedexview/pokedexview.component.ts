@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { Pokemon } from 'src/app/interfaces/pokemon.model';
-import { DeletePokemonService } from 'src/app/services/delete-pokemon.service';
+import { BehaviorSubjectService } from 'src/app/services/behavior-subject.service';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { RetrievePokeInfoService } from 'src/app/services/retrieve-poke-info.service';
 import { PokemonViewComponent } from './pokemon-view/pokemon-view.component';
@@ -22,7 +22,7 @@ export class PokedexViewComponent implements OnInit {
     private pokeService: PokemonService,
     private pokeimages: RetrievePokeInfoService,
     private dialog: MatDialog,
-    private deletepoke: DeletePokemonService
+    private bsService: BehaviorSubjectService
   ) {}
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class PokedexViewComponent implements OnInit {
       this.tablePokes = pokes;
     });
 
-    this.deletepoke.deletePokeObs.subscribe((numero) => {
+    this.bsService.deletePokeObs.subscribe((numero) => {
       if (numero != 0) this.deletePoke(numero);
     });
   }

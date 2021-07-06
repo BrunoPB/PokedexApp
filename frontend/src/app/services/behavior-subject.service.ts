@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class DeletePokemonService {
+export class BehaviorSubjectService {
   deletePokeBS = new BehaviorSubject(0);
   deletePokeObs = this.deletePokeBS.asObservable();
 

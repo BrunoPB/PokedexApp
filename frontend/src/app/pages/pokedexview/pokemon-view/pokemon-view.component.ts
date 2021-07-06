@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Pokemon } from 'src/app/interfaces/pokemon.model';
-import { DeletePokemonService } from 'src/app/services/delete-pokemon.service';
+import { BehaviorSubjectService } from 'src/app/services/behavior-subject.service';
 import { RetrievePokeInfoService } from 'src/app/services/retrieve-poke-info.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class PokemonViewComponent implements OnInit {
     private dialogRef: MatDialogRef<PokemonViewComponent>,
     @Inject(MAT_DIALOG_DATA) private data: { pokemon: Pokemon },
     private pokeinfo: RetrievePokeInfoService,
-    private deletepoke: DeletePokemonService
+    private bsService: BehaviorSubjectService
   ) {}
 
   ngOnInit(): void {}
@@ -124,7 +124,7 @@ export class PokemonViewComponent implements OnInit {
   }
 
   deletePokemon(numero: number) {
-    this.deletepoke.deletePokeBS.next(numero);
+    this.bsService.deletePokeBS.next(numero);
     this.out();
   }
 }
