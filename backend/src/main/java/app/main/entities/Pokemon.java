@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity(name = "Pokemon")
 public class Pokemon {
 
@@ -211,5 +213,14 @@ public class Pokemon {
 
     public void setRegiao(String Regiao) {
         this.Regiao = Regiao;
+    }
+
+    @JsonIgnore
+    public List<Usuario> getUsuarios() {
+        return this.Usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> Usuarios) {
+        this.Usuarios = Usuarios;
     }
 }

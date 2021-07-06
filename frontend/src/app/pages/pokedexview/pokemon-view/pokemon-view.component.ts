@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Pokemon } from 'src/app/interfaces/pokemon.model';
+import { DeletePokemonService } from 'src/app/services/delete-pokemon.service';
 import { RetrievePokeInfoService } from 'src/app/services/retrieve-poke-info.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class PokemonViewComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<PokemonViewComponent>,
     @Inject(MAT_DIALOG_DATA) private data: { pokemon: Pokemon },
-    private pokeinfo: RetrievePokeInfoService
+    private pokeinfo: RetrievePokeInfoService,
+    private deletepoke: DeletePokemonService
   ) {}
 
   ngOnInit(): void {}
@@ -119,5 +121,10 @@ export class PokemonViewComponent implements OnInit {
         break;
     }
     return `${color};`;
+  }
+
+  deletePokemon(numero: number) {
+    this.deletepoke.deletePokeBS.next(numero);
+    this.out();
   }
 }

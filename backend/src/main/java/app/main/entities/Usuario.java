@@ -66,6 +66,14 @@ public class Usuario {
         this.PokPerfil = PokPerfil;
     }
 
+    public List<Pokemon> getPokemons() {
+        return this.Pokemons;
+    }
+
+    public void setPokemons(List<Pokemon> Pokemons) {
+        this.Pokemons = Pokemons;
+    }
+
     // Constructors
     public Usuario() {
 
