@@ -1,22 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginareaComponent } from './loginarea/loginarea.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'loginarea',
+    redirectTo: 'pages',
     pathMatch: 'full',
-  },
-  {
-    path: 'loginarea',
-    loadChildren: () =>
-      import('./loginarea/loginarea.module').then((m) => m.LoginareaModule),
   },
   {
     path: 'pages',
     loadChildren: () =>
       import('./pages/pages.module').then((m) => m.PagesModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'loginarea',
+    loadChildren: () =>
+      import('./loginarea/loginarea.module').then((m) => m.LoginareaModule),
   },
   {
     path: '**',

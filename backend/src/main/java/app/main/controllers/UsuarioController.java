@@ -20,7 +20,7 @@ import app.main.repositories.PokemonRepository;
 import app.main.repositories.UsuarioRepository;
 
 @RestController
-@CrossOrigin("localhost:4200")
+@CrossOrigin("http://localhost:4200")
 public class UsuarioController {
 
     private final UsuarioRepository usuarioRepository;
@@ -40,6 +40,12 @@ public class UsuarioController {
     @ResponseBody
     public Usuario readOne(@PathVariable Integer id) {
         return usuarioRepository.findById(id).get();
+    }
+
+    @GetMapping(path = "/usuarios/nome/{nome}")
+    @ResponseBody
+    public Usuario readByName(@PathVariable String nome) {
+        return usuarioRepository.findByName(nome);
     }
 
     @PostMapping(path = "/usuarios")
