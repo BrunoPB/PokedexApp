@@ -1,7 +1,7 @@
 import { Pokemon } from './pokemon.model';
 
 export interface Usuario {
-  id: number;
+  id?: number;
   nome: string;
   senha: string;
   pokperfil?: number;

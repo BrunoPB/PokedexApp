@@ -28,4 +28,12 @@ export class LoginService {
       }
     });
   }
+
+  async existUser(nome: string): Promise<void> {
+    this.user = await this.userService.getUsuarioByName(nome).toPromise();
+    return new Promise<void>((res, rej) => {
+      if (this.user !== null) res();
+      else rej();
+    });
+  }
 }

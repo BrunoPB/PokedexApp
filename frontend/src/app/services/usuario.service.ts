@@ -19,4 +19,8 @@ export class UsuarioService {
   getUsuarioByName(nome: string): Observable<Usuario> {
     return this.http.get<Usuario>(`${this.url}/usuarios/nome/${nome}`);
   }
+
+  postUsuario(user: Usuario): Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.url}/usuarios`, user);
+  }
 }

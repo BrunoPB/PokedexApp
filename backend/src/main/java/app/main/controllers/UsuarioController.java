@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,8 +21,9 @@ import app.main.entities.Usuario;
 import app.main.repositories.PokemonRepository;
 import app.main.repositories.UsuarioRepository;
 
-@RestController
 @CrossOrigin("http://localhost:4200")
+@RestController
+@RequestMapping("/usuarios")
 public class UsuarioController {
 
     private final UsuarioRepository usuarioRepository;
@@ -31,33 +34,31 @@ public class UsuarioController {
         this.pokemonRepository = pokemonRepository;
     }
 
-    @GetMapping(path = "/usuarios")
+    @GetMapping()
     public List<Usuario> readAll() {
         return usuarioRepository.findAll();
     }
 
-    @GetMapping(path = "/usuarios/id/{id}")
+    @GetMapping(path = "/id/{id}")
     @ResponseBody
     public Usuario readOne(@PathVariable Integer id) {
         return usuarioRepository.findById(id).get();
     }
 
-    @GetMapping(path = "/usuarios/nome/{nome}")
+    @GetMapping(path = "/nome/{nome}")
     @ResponseBody
     public Usuario readByName(@PathVariable String nome) {
         return usuarioRepository.findByName(nome);
     }
 
-    @PostMapping(path = "/usuarios")
+    @PostMapping()
     @ResponseBody
-    public Usuario add(@RequestParam String nome, @RequestParam String senha,
-            @RequestParam(required = false) Integer pokperfil) {
-        Usuario user = new Usuario(nome, senha, pokperfil);
+    public Usuario add(@RequestBody Usuario user) {
         usuarioRepository.save(user);
         return user;
     }
 
-    @PutMapping(path = "/usuarios")
+    @PutMapping()
     @ResponseBody
     public Usuario update(@RequestParam String nome, @RequestParam String senha,
             @RequestParam(required = false) Integer pokperfil) {
@@ -71,7 +72,7 @@ public class UsuarioController {
         return user;
     }
 
-    @DeleteMapping(path = "/usuarios/delete/{id}")
+    @DeleteMapping(path = "/delete/{id}")
     @ResponseBody
     public Optional<Usuario> delete(@PathVariable Integer id) {
         Optional<Usuario> item = usuarioRepository.findById(id);

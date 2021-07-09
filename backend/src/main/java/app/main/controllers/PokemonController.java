@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import app.main.entities.Pokemon;
 import app.main.repositories.PokemonRepository;
 
-@RestController
 @CrossOrigin("http://localhost:4200")
+@RestController
 @RequestMapping("/pokemons")
 public class PokemonController {
 

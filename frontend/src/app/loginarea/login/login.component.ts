@@ -10,11 +10,8 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  usuario: Usuario = {
-    id: 0,
-    nome: '',
-    senha: '',
-  };
+  nome: string = '';
+  senha: string = '';
 
   constructor(
     private loginService: LoginService,
@@ -26,9 +23,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.loginService
-      .login(this.usuario.nome, this.usuario.senha)
+      .login(this.nome, this.senha)
       .then((msg) => {
-        this.snackBar.open(`Bem-vindo, ${this.usuario.nome}!`, 'X', {
+        this.snackBar.open(`Bem-vindo, ${this.nome}!`, 'X', {
           duration: 2000,
         });
         this.router.navigateByUrl('');
@@ -37,7 +34,7 @@ export class LoginComponent implements OnInit {
         this.snackBar.open(err, 'X', {
           duration: 5000,
         });
-        this.usuario.senha = '';
+        this.senha = '';
       });
   }
 }
