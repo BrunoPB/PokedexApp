@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class RetrievePokeInfoService {
   constructor() {}
 
-  getImage(numero: number): string {
+  private getImage(numero: number): string {
     let urlPokemonImage: string =
       'https://assets.pokemon.com/assets/cms2/img/pokedex/full/';
     if (numero < 10) {

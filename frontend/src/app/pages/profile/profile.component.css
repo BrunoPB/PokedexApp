@@ -3,6 +3,7 @@ main {
   border: none;
   border-radius: 30px;
   background-color: lightslategray;
+  min-width: 500px;
 }
 
 mat-divider {

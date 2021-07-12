@@ -26,7 +26,7 @@ export class PokedexViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.pokeService.getPokemons().subscribe((pokes) => {
+    this.pokeService.getUserPokemons().subscribe((pokes) => {
       this.tablePokes = pokes;
     });
 

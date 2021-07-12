@@ -10,17 +10,21 @@ import { Usuario } from '../interfaces/usuario.model';
 export class UsuarioService {
   constructor(private http: HttpClient) {}
 
-  readonly url: string = environment.urlBack;
+  readonly url: string = `${environment.urlBack}/usuarios`;
 
   getUsuarios(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(`${this.url}/usuarios`);
+    return this.http.get<Usuario[]>(this.url);
   }
 
   getUsuarioByName(nome: string): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.url}/usuarios/nome/${nome}`);
+    return this.http.get<Usuario>(`${this.url}/nome/${nome}`);
   }
 
   postUsuario(user: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(`${this.url}/usuarios`, user);
+    return this.http.post<Usuario>(this.url, user);
+  }
+
+  putUsuario(user: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>(this.url, user);
   }
 }

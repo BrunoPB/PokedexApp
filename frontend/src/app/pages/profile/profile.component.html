@@ -1,14 +1,15 @@
 <main>
-    <form class="pokperfil-form">
-        <div class="img">
-            <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/384.png">
+    <form class="pokperfil-form" (ngSubmit)="changePokperfil()" #pokPerfilForm="ngForm">
+        <div class="img" *ngIf="pokPerfilExists">
+            <img [src]="pokPerfilImage">
         </div>
-        <p class="pokperfil-pokemon">#384 - Rayquaza</p>
+        <p class="pokperfil-pokemon" *ngIf="pokPerfilExists">#{{user.pokPerfil}} - {{pokPerfilName}}</p>
         <mat-form-field appearance="outline">
             <mat-label>Profile Pokemon</mat-label>
-            <input matInput>
+            <input matInput [(ngModel)]="innerPokPerfil" name="innerPokPerfil" type="text">
         </mat-form-field>
-        <button mat-raised-button color="accent">Change profile Pokemon</button>
+        <button mat-raised-button color="accent" type="submit">Change profile
+            Pokemon</button>
     </form>
     <mat-divider></mat-divider>
     <form class="user-form">
@@ -16,7 +17,7 @@
         <div class="user-input">
             <mat-form-field appearance="outline">
                 <mat-label>New Username</mat-label>
-                <input matInput>
+                <input matInput name="newUsername">
             </mat-form-field>
             <button mat-raised-button color="accent">Change Username</button>
         </div>
@@ -27,15 +28,15 @@
         <div class="password-div">
             <mat-form-field appearance="outline">
                 <mat-label>New Password</mat-label>
-                <input matInput>
+                <input matInput name="newPassword">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Current Password</mat-label>
-                <input matInput>
+                <input matInput name="currentPassword">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Confirm new Password</mat-label>
-                <input matInput>
+                <input matInput name="cNewPassword">
             </mat-form-field>
             <button mat-raised-button color="accent">Change Password</button>
         </div>

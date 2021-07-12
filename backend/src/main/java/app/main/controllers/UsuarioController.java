@@ -60,14 +60,11 @@ public class UsuarioController {
 
     @PutMapping()
     @ResponseBody
-    public Usuario update(@RequestParam String nome, @RequestParam String senha,
-            @RequestParam(required = false) Integer pokperfil) {
-        Usuario user = usuarioRepository.findByName(nome);
-        if (user != null) {
-            user = new Usuario(nome, senha, pokperfil);
+    public Usuario update(@RequestBody Usuario user) {
+        if (usuarioRepository.findByName(user.getNome()) != null) {
             usuarioRepository.save(user);
         } else {
-            System.err.println("Erro => Usuario inexistente. Nao foi possivel exclui-lo.");
+            System.err.println("Erro => Usuario inexistente. Nao foi possivel altera-lo.");
         }
         return user;
     }
@@ -91,7 +88,17 @@ public class UsuarioController {
     @ResponseBody
     public List<Pokemon> getRelationUsuario(@PathVariable Integer id) {
         List<Pokemon> userPokeList = usuarioRepository.findById(id).get().getPokemons();
-        System.out.println(userPokeList);
+        if (userPokeList == null) {
+            System.err.println("Erro => Nao foi possivel encontrar relacionamentos."
+                    + " Esse usuario existe? Ele tem esse Pokemon?");
+        }
+        return userPokeList;
+    }
+
+    @GetMapping(path = "/relacionamento/usuario/nome/{nome}")
+    @ResponseBody
+    public List<Pokemon> getRelationUsuarioByName(@PathVariable String nome) {
+        List<Pokemon> userPokeList = usuarioRepository.findByName(nome).getPokemons();
         if (userPokeList == null) {
             System.err.println("Erro => Nao foi possivel encontrar relacionamentos."
                     + " Esse usuario existe? Ele tem esse Pokemon?");
