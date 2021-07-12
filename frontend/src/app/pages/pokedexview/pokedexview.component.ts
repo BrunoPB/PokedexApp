@@ -15,6 +15,9 @@ import { PokemonViewComponent } from './pokemon-view/pokemon-view.component';
 export class PokedexViewComponent implements OnInit {
   tablePokes: Pokemon[];
   displayedColumns = ['imagem', 'nome', 'numero', 'regiao', 'edit'];
+  nRegiao: number[] = [0, 0, 0, 0, 0, 0, 0, 0];
+  nLegendaries: number = 0;
+  totalPokemons: number = 0;
 
   @ViewChild(MatTable) table: MatTable<Pokemon>;
 
@@ -28,6 +31,7 @@ export class PokedexViewComponent implements OnInit {
   ngOnInit(): void {
     this.pokeService.getUserPokemons().subscribe((pokes) => {
       this.tablePokes = pokes;
+      this.countPokes();
     });
 
     this.bsService.deletePokeObs.subscribe((numero) => {
@@ -54,5 +58,46 @@ export class PokedexViewComponent implements OnInit {
         this.table.renderRows();
       }
     }
+    this.countPokes();
+  }
+
+  countPokes() {
+    for (let i = 0; i < this.nRegiao.length; i++) {
+      this.nRegiao[i] = 0;
+    }
+    this.nLegendaries = 0;
+    for (let i: number = 0; i < this.tablePokes.length; i++) {
+      let p: Pokemon = this.tablePokes[i];
+      switch (p.regiao) {
+        case 'Kanto':
+          this.nRegiao[0]++;
+          break;
+        case 'Johto':
+          this.nRegiao[1]++;
+          break;
+        case 'Hoenn':
+          this.nRegiao[2]++;
+          break;
+        case 'Sinnoh':
+          this.nRegiao[3]++;
+          break;
+        case 'Unova':
+          this.nRegiao[4]++;
+          break;
+        case 'Kalos':
+          this.nRegiao[5]++;
+          break;
+        case 'Alola':
+          this.nRegiao[6]++;
+          break;
+        case 'Galar':
+          this.nRegiao[7]++;
+          break;
+      }
+      if (p.lendario) {
+        this.nLegendaries++;
+      }
+    }
+    this.totalPokemons = this.tablePokes.length;
   }
 }

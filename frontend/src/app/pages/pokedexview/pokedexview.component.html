@@ -62,16 +62,17 @@
             <mat-divider></mat-divider>
             <h3>Pokemons in Pokedex:</h3>
             <div class="qtde-regions">
-                <p class="nregion">Kanto: 34</p>
-                <p class="nregion">Johto: 2</p>
-                <p class="nregion">Hoenn: 23</p>
-                <p class="nregion">Sinnoh: 14</p>
-                <p class="nregion">Unova: 12</p>
-                <p class="nregion">Kalos: 6</p>
-                <p class="nregion">Alola: 27</p>
+                <p class="nregion">Kanto: {{nRegiao[0]}}</p>
+                <p class="nregion">Johto: {{nRegiao[1]}}</p>
+                <p class="nregion">Hoenn: {{nRegiao[2]}}</p>
+                <p class="nregion">Sinnoh: {{nRegiao[3]}}</p>
+                <p class="nregion">Unova: {{nRegiao[4]}}</p>
+                <p class="nregion">Kalos: {{nRegiao[5]}}</p>
+                <p class="nregion">Alola: {{nRegiao[6]}}</p>
+                <p class="nregion">Galar: {{nRegiao[7]}}</p>
             </div>
-            <p class="oqtde">Lengadaries: 2</p>
-            <p class="oqtde">Nation Dex: {{34+2+23+14+12+6+27}}</p>
+            <p class="oqtde">Lengadaries: {{nLegendaries}}</p>
+            <p class="oqtde">Nation Dex: {{totalPokemons}}</p>
         </div>
     </div>
 </main>
