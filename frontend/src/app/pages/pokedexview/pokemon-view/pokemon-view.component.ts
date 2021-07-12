@@ -1,8 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Pokemon } from 'src/app/interfaces/pokemon.model';
+import { Usuario } from 'src/app/interfaces/usuario.model';
 import { BehaviorSubjectService } from 'src/app/services/behavior-subject.service';
 import { RetrievePokeInfoService } from 'src/app/services/retrieve-poke-info.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-pokemon-view',
@@ -11,12 +13,15 @@ import { RetrievePokeInfoService } from 'src/app/services/retrieve-poke-info.ser
 })
 export class PokemonViewComponent implements OnInit {
   pokemon: Pokemon = this.data.pokemon;
+  user: Usuario;
+  username: string = window.localStorage.getItem('token');
 
   constructor(
     private dialogRef: MatDialogRef<PokemonViewComponent>,
     @Inject(MAT_DIALOG_DATA) private data: { pokemon: Pokemon },
     private pokeinfo: RetrievePokeInfoService,
-    private bsService: BehaviorSubjectService
+    private bsService: BehaviorSubjectService,
+    private userService: UsuarioService
   ) {}
 
   ngOnInit(): void {}
@@ -121,6 +126,15 @@ export class PokemonViewComponent implements OnInit {
         break;
     }
     return `${color};`;
+  }
+
+  changePokPerfil() {
+    this.userService.getUsuarioByName(this.username).subscribe((user) => {
+      this.user = user;
+      this.user.pokPerfil = this.pokemon.numero;
+      this.userService.putUsuario(this.user).subscribe();
+      window.location.reload();
+    });
   }
 
   deletePokemon(numero: number) {

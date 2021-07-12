@@ -10,6 +10,7 @@ import { UsuarioService } from '../services/usuario.service';
 export class PagesComponent implements OnInit {
   pokeBackground: string =
     "background-image: url('../../assets/imgs/neutral-background.jpg');";
+  username = window.localStorage.getItem('token');
 
   constructor(
     private userService: UsuarioService,
@@ -21,14 +22,12 @@ export class PagesComponent implements OnInit {
   ngOnInit(): void {}
 
   setPokeBackground() {
-    this.userService
-      .getUsuarioByName(window.localStorage.getItem('token'))
-      .subscribe((user) => {
-        if (user.pokPerfil !== null) {
-          this.pokeBackground = `background-image: url('${this.pokeinfo.getPokeImage(
-            user.pokPerfil
-          )}');`;
-        }
-      });
+    this.userService.getUsuarioByName(this.username).subscribe((user) => {
+      if (user.pokPerfil !== null) {
+        this.pokeBackground = `background-image: url('${this.pokeinfo.getPokeImage(
+          user.pokPerfil
+        )}');`;
+      }
+    });
   }
 }
