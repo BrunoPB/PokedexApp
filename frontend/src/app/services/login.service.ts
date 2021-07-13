@@ -18,7 +18,7 @@ export class LoginService {
       if (this.user.senha !== senha) msg = 'Senha errada.';
     }
     if (msg === 'OK') {
-      window.localStorage.setItem('token', this.user.nome);
+      window.localStorage.setItem('token', this.user.id.toString());
     }
     return new Promise<string>((res, rej) => {
       if (msg === 'OK') {

@@ -8,7 +8,7 @@ import { Pokemon } from '../interfaces/pokemon.model';
   providedIn: 'root',
 })
 export class PokemonService {
-  username = window.localStorage.getItem('token');
+  userID = window.localStorage.getItem('token');
 
   constructor(private http: HttpClient) {}
 
@@ -20,9 +20,7 @@ export class PokemonService {
   }
 
   getUserPokemons(): Observable<Pokemon[]> {
-    return this.http.get<Pokemon[]>(
-      `${this.urlRelac}/usuario/nome/${this.username}`
-    );
+    return this.http.get<Pokemon[]>(`${this.urlRelac}/usuario/${this.userID}`);
   }
 
   getPokemonByNumber(numero: number): Observable<Pokemon> {

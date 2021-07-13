@@ -14,7 +14,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class PokemonViewComponent implements OnInit {
   pokemon: Pokemon = this.data.pokemon;
   user: Usuario;
-  username: string = window.localStorage.getItem('token');
+  userID: string = window.localStorage.getItem('token');
 
   constructor(
     private dialogRef: MatDialogRef<PokemonViewComponent>,
@@ -129,7 +129,7 @@ export class PokemonViewComponent implements OnInit {
   }
 
   changePokPerfil() {
-    this.userService.getUsuarioByName(this.username).subscribe((user) => {
+    this.userService.getUsuarioByID(this.userID).subscribe((user) => {
       this.user = user;
       this.user.pokPerfil = this.pokemon.numero;
       this.userService.putUsuario(this.user).subscribe();

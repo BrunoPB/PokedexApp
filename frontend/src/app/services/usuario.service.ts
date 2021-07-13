@@ -20,6 +20,10 @@ export class UsuarioService {
     return this.http.get<Usuario>(`${this.url}/nome/${nome}`);
   }
 
+  getUsuarioByID(id: string): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.url}/id/${id}`);
+  }
+
   postUsuario(user: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.url, user);
   }

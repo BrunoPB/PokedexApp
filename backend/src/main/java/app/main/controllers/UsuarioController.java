@@ -61,7 +61,7 @@ public class UsuarioController {
     @PutMapping()
     @ResponseBody
     public Usuario update(@RequestBody Usuario user) {
-        if (usuarioRepository.findByName(user.getNome()) != null) {
+        if (usuarioRepository.findById(user.getID()) != null) {
             usuarioRepository.save(user);
         } else {
             System.err.println("Erro => Usuario inexistente. Nao foi possivel altera-lo.");
