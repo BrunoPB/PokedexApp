@@ -2,9 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { Pokemon } from 'src/app/interfaces/pokemon.model';
+import { Usuario } from 'src/app/interfaces/usuario.model';
 import { BehaviorSubjectService } from 'src/app/services/behavior-subject.service';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { RetrievePokeInfoService } from 'src/app/services/retrieve-poke-info.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 import { PokemonViewComponent } from './pokemon-view/pokemon-view.component';
 
 @Component({
@@ -18,6 +20,7 @@ export class PokedexViewComponent implements OnInit {
   nRegiao: number[] = [0, 0, 0, 0, 0, 0, 0, 0];
   nLegendaries: number = 0;
   totalPokemons: number = 0;
+  user: Usuario;
 
   @ViewChild(MatTable) table: MatTable<Pokemon>;
 
@@ -25,10 +28,9 @@ export class PokedexViewComponent implements OnInit {
     private pokeService: PokemonService,
     private pokeimages: RetrievePokeInfoService,
     private dialog: MatDialog,
-    private bsService: BehaviorSubjectService
-  ) {}
-
-  ngOnInit(): void {
+    private bsService: BehaviorSubjectService,
+    private userService: UsuarioService
+  ) {
     this.pokeService.getUserPokemons().subscribe((pokes) => {
       this.tablePokes = pokes;
       this.countPokes();
@@ -37,7 +39,15 @@ export class PokedexViewComponent implements OnInit {
     this.bsService.deletePokeObs.subscribe((numero) => {
       if (numero != 0) this.deletePoke(numero);
     });
+
+    this.userService
+      .getUsuarioByID(window.localStorage.getItem('token'))
+      .subscribe((userP) => {
+        this.user = userP;
+      });
   }
+
+  ngOnInit(): void {}
 
   getPokeImage(numero: number): string {
     return this.pokeimages.getPokeImage(numero);
@@ -51,6 +61,7 @@ export class PokedexViewComponent implements OnInit {
   }
 
   deletePoke(numero: number) {
+    this.userService.deleteRelacionamento(numero).subscribe();
     for (let i = 0; i < this.tablePokes.length; i++) {
       if (this.tablePokes[i].numero === numero) {
         this.tablePokes.splice(i, 1);
@@ -59,6 +70,11 @@ export class PokedexViewComponent implements OnInit {
       }
     }
     this.countPokes();
+    if (numero === this.user.pokPerfil) {
+      this.user.pokPerfil = null;
+      this.userService.putUsuario(this.user).subscribe();
+      window.location.reload();
+    }
   }
 
   countPokes() {

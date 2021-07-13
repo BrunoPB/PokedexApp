@@ -120,7 +120,7 @@ export class PokemonViewComponent implements OnInit {
         color += '#9898B0';
         break;
       case 'Fairy':
-        color += 'EE99AC';
+        color += '#EE99AC';
         break;
       default:
         break;

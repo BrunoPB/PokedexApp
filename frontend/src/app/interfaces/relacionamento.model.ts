@@ -1,4 +1,4 @@
 export interface Relacionamento {
-  usuario_id: number;
-  pokemon_id: number;
+  id_Usuario: number;
+  n_Poke: number;
 }
