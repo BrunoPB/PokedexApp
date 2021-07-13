@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Pokemon } from 'src/app/interfaces/pokemon.model';
 import { Usuario } from 'src/app/interfaces/usuario.model';
 import { BehaviorSubjectService } from 'src/app/services/behavior-subject.service';
@@ -15,6 +15,7 @@ import { PokemonViewComponent } from './pokemon-view/pokemon-view.component';
   styleUrls: ['./pokedexview.component.css'],
 })
 export class PokedexViewComponent implements OnInit {
+  tableSource;
   tablePokes: Pokemon[];
   displayedColumns = ['imagem', 'nome', 'numero', 'regiao', 'edit'];
   nRegiao: number[] = [0, 0, 0, 0, 0, 0, 0, 0];
@@ -34,6 +35,7 @@ export class PokedexViewComponent implements OnInit {
     this.pokeService.getUserPokemons().subscribe((pokes) => {
       this.tablePokes = pokes;
       this.countPokes();
+      this.tableSource = new MatTableDataSource(this.tablePokes);
     });
 
     this.bsService.deletePokeObs.subscribe((numero) => {
@@ -115,5 +117,10 @@ export class PokedexViewComponent implements OnInit {
       }
     }
     this.totalPokemons = this.tablePokes.length;
+  }
+
+  searchPokemon(event: Event) {
+    const filtro = (event.target as HTMLInputElement).value;
+    this.tableSource.filter = filtro.trim().toLowerCase();
   }
 }
