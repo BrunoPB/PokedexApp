@@ -3,7 +3,7 @@
         <form class="byName" (ngSubmit)="findPokemonByName()" #search="ngForm">
             <mat-form-field appearance="outline">
                 <mat-label>Search by name</mat-label>
-                <input matInput [(ngModel)]="innerSearch" name="input">
+                <input matInput [(ngModel)]="innerSearch" name="input" (keyup)="findPokemonByName()">
             </mat-form-field>
             <button mat-button color="basic" type="submit">
                 <mat-icon>search</mat-icon>

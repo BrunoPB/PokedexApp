@@ -48,7 +48,7 @@ export class AddPokemonComponent implements OnInit {
 
   private testExistance(nome: string): boolean {
     const exists = this.pokeDatabase.find((poke) => {
-      return poke.nome === nome;
+      return poke.nome.toLowerCase() === nome.toLowerCase();
     });
     return (this.existsPokemon = exists !== undefined);
   }
