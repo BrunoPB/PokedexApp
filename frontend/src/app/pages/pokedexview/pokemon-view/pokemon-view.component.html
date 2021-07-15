@@ -44,7 +44,8 @@
                 </div>
                 <div class="5-info-div d" *ngIf="pokemon.mega">
                     <img [src]="getMegaImage(pokemon.numero)" alt="Error" class="mega-img">
-                    <p class="mega" [style]="typeColor(pokemon.tipo1)">Mega-{{pokemon.nome}}</p>
+                    <p class="mega" [style]="typeColor(pokemon.tipo1)">{{pokemon.nome == "Kyogre" || pokemon.nome ==
+                        "Groudon"? "Primal" : "Mega" }}-{{pokemon.nome}}</p>
                 </div>
                 <div class="6-info-div d" *ngIf="pokemon.lendario">
                     <p class="legendary">Legendary</p>
