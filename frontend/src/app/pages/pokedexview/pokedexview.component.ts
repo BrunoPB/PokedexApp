@@ -16,12 +16,17 @@ import { PokemonViewComponent } from './pokemon-view/pokemon-view.component';
 })
 export class PokedexViewComponent implements OnInit {
   tableSource;
-  tablePokes: Pokemon[];
+  fullTablePokes: Pokemon[];
+  filteredTablePokes: Pokemon[];
   displayedColumns = ['imagem', 'nome', 'numero', 'regiao', 'edit'];
   nRegiao: number[] = [0, 0, 0, 0, 0, 0, 0, 0];
   nLegendaries: number = 0;
   totalPokemons: number = 0;
   user: Usuario;
+  innerRegion: string = 'Any';
+  innerType: string = 'Any';
+  innerMega: boolean = false;
+  innerLegendary: boolean = false;
 
   @ViewChild(MatTable) table: MatTable<Pokemon>;
 
@@ -33,9 +38,10 @@ export class PokedexViewComponent implements OnInit {
     private userService: UsuarioService
   ) {
     this.pokeService.getUserPokemons().subscribe((pokes) => {
-      this.tablePokes = pokes;
+      this.fullTablePokes = pokes;
+      this.filteredTablePokes = this.fullTablePokes;
       this.countPokes();
-      this.tableSource = new MatTableDataSource(this.tablePokes);
+      this.tableSource = new MatTableDataSource(this.filteredTablePokes);
     });
 
     this.bsService.deletePokeObs.subscribe((numero) => {
@@ -64,10 +70,10 @@ export class PokedexViewComponent implements OnInit {
 
   deletePoke(numero: number) {
     this.userService.deleteRelacionamento(numero).subscribe();
-    for (let i = 0; i < this.tablePokes.length; i++) {
-      if (this.tablePokes[i].numero === numero) {
-        this.tablePokes.splice(i, 1);
-        i = this.tablePokes.length;
+    for (let i = 0; i < this.filteredTablePokes.length; i++) {
+      if (this.filteredTablePokes[i].numero === numero) {
+        this.filteredTablePokes.splice(i, 1);
+        i = this.filteredTablePokes.length;
         this.table.renderRows();
       }
     }
@@ -84,8 +90,8 @@ export class PokedexViewComponent implements OnInit {
       this.nRegiao[i] = 0;
     }
     this.nLegendaries = 0;
-    for (let i: number = 0; i < this.tablePokes.length; i++) {
-      let p: Pokemon = this.tablePokes[i];
+    for (let i: number = 0; i < this.fullTablePokes.length; i++) {
+      let p: Pokemon = this.fullTablePokes[i];
       switch (p.regiao) {
         case 'Kanto':
           this.nRegiao[0]++;
@@ -116,11 +122,79 @@ export class PokedexViewComponent implements OnInit {
         this.nLegendaries++;
       }
     }
-    this.totalPokemons = this.tablePokes.length;
+    this.totalPokemons = this.fullTablePokes.length;
   }
 
   searchPokemon(event: Event) {
     const filtro = (event.target as HTMLInputElement).value;
     this.tableSource.filter = filtro.trim().toLowerCase();
+  }
+
+  filter() {
+    this.filteredTablePokes = this.regionFilter(
+      this.typeFilter(
+        this.megaFilter(this.legendaryFilter(this.fullTablePokes))
+      )
+    );
+    this.tableSource = new MatTableDataSource(this.filteredTablePokes);
+  }
+
+  regionFilter(table: Pokemon[]): Pokemon[] {
+    if (this.innerRegion == 'Any') {
+      return table;
+    } else {
+      let newTable: Pokemon[] = [];
+      for (let i = 0; i < table.length; i++) {
+        if (table[i].regiao === this.innerRegion) {
+          newTable.push(table[i]);
+        }
+      }
+      return newTable;
+    }
+  }
+
+  typeFilter(table: Pokemon[]): Pokemon[] {
+    if (this.innerType == 'Any') {
+      return table;
+    } else {
+      let newTable: Pokemon[] = [];
+      for (let i = 0; i < table.length; i++) {
+        if (
+          table[i].tipo1 === this.innerType ||
+          table[i].tipo2 === this.innerType
+        ) {
+          newTable.push(table[i]);
+        }
+      }
+      return newTable;
+    }
+  }
+
+  megaFilter(table: Pokemon[]): Pokemon[] {
+    if (this.innerMega) {
+      let newTable: Pokemon[] = [];
+      for (let i = 0; i < table.length; i++) {
+        if (table[i].mega) {
+          newTable.push(table[i]);
+        }
+      }
+      return newTable;
+    } else {
+      return table;
+    }
+  }
+
+  legendaryFilter(table: Pokemon[]): Pokemon[] {
+    if (this.innerLegendary) {
+      let newTable: Pokemon[] = [];
+      for (let i = 0; i < table.length; i++) {
+        if (table[i].lendario) {
+          newTable.push(table[i]);
+        }
+      }
+      return newTable;
+    } else {
+      return table;
+    }
   }
 }

@@ -57,9 +57,49 @@
     </div>
     <div class="bottom-right-div">
         <div class="filter-div">
+            <h3 class="filter-title">Filter</h3>
             <mat-form-field appearance="outline">
-                <input matInput>
+                <mat-label>Region</mat-label>
+                <mat-select [(ngModel)]="innerRegion" (selectionChange)="filter()">
+                    <mat-option value="Any">Any</mat-option>
+                    <mat-option value="Kanto">Kanto</mat-option>
+                    <mat-option value="Johto">Johto</mat-option>
+                    <mat-option value="Hoenn">Hoenn</mat-option>
+                    <mat-option value="Sinnoh">Sinnoh</mat-option>
+                    <mat-option value="Unova">Unova</mat-option>
+                    <mat-option value="Kalos">Kalos</mat-option>
+                    <mat-option value="Alola">Alola</mat-option>
+                    <mat-option value="Galar">Galar</mat-option>
+                </mat-select>
             </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Type</mat-label>
+                <mat-select [(ngModel)]="innerType" (selectionChange)="filter()">
+                    <mat-option value="Any">Any</mat-option>
+                    <mat-option value="Normal">Normal</mat-option>
+                    <mat-option value="Fire">Fire</mat-option>
+                    <mat-option value="Fighting">Fighting</mat-option>
+                    <mat-option value="Water">Water</mat-option>
+                    <mat-option value="Flying">Flying</mat-option>
+                    <mat-option value="Grass">Grass</mat-option>
+                    <mat-option value="Poison">Poison</mat-option>
+                    <mat-option value="Electric">Electric</mat-option>
+                    <mat-option value="Ground">Ground</mat-option>
+                    <mat-option value="Psychic">Psychic</mat-option>
+                    <mat-option value="Rock">Rock</mat-option>
+                    <mat-option value="Ice">Ice</mat-option>
+                    <mat-option value="Bug">Bug</mat-option>
+                    <mat-option value="Dragon">Dragon</mat-option>
+                    <mat-option value="Ghost">Ghost</mat-option>
+                    <mat-option value="Dark">Dark</mat-option>
+                    <mat-option value="Steel">Steel</mat-option>
+                    <mat-option value="Fairy">Fairy</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-checkbox color="warn" [(ngModel)]="innerMega" (ngModelChange)="filter()">Mega-Evolutions Only
+            </mat-checkbox>
+            <mat-checkbox color="warn" [(ngModel)]="innerLegendary" (ngModelChange)="filter()">Legendaries Only
+            </mat-checkbox>
         </div>
         <div class="qtde-pokemon-div">
             <mat-divider></mat-divider>

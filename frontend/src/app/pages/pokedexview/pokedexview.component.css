@@ -38,6 +38,10 @@ div {
 
 /*TOP RIGHT DIV*/
 
+.top-right-div mat-form-field {
+  width: 100%;
+}
+
 /*BOTTOM LEFT DIV*/
 
 .bottom-left-div {
@@ -107,14 +111,22 @@ img {
   display: grid;
   grid-template-rows: 3fr 2fr;
   gap: 3px;
+  padding: 5px 15px 0 15px;
+  width: auto;
 }
 
 mat-divider {
   padding: 0;
-  margin: 3px 0;
+  margin: 5px 0;
 }
 
 /*Filter Div*/
+
+.filter-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 /*Qtde Pokemon Div*/
 
