@@ -15,7 +15,7 @@ public class DAO {
         try {
             Class.forName(driver);
             conexao = DriverManager.getConnection(url, user, senha);
-            System.out.println("Driver carregado!");
+            System.out.println("Driver loaded!");
         } catch (Exception e) {
             System.err.println("ERROR => " + e.getMessage());
         }

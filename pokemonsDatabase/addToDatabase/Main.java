@@ -12,7 +12,7 @@ public class Main {
         dao.connectBD();
         try {
             stat = dao.getConexao().createStatement();
-            System.out.println("Conexao estabelecida!");
+            System.out.println("Connection established!");
         } catch (SQLException e) {
             System.err.println("ERROR => " + e.getMessage());
         }
@@ -31,7 +31,7 @@ public class Main {
                 setPoke(pokeStats);
             }
         }
-
+        System.out.println("Pokemon database successfully added!");
     }
 
     public static void setPoke(String poke[]) {
@@ -71,7 +71,7 @@ public class Main {
                 pokemon.setRegiao("Galar");
                 break;
             default:
-                System.err.println("ERRO COM A REGIAO!");
+                System.err.println("ERROR WITH REGION!");
                 break;
         }
 
@@ -87,15 +87,14 @@ public class Main {
             pokemon.setMega(false);
         }
 
-        String update = ("INSERT INTO Pokemon VALUES(" + pokemon.getAtk() + ", " + pokemon.getDef() + ", "
-                + pokemon.getHp() + ", " + poke[6] + ", " + poke[7] + ", " + pokemon.getNome() + ", "
-                + pokemon.getNumero() + ", '" + pokemon.getRegiao() + "', " + pokemon.getSpatk() + ", "
-                + pokemon.getSpdef() + ", " + pokemon.getSpd() + ", " + pokemon.getTipo1() + ", " + pokemon.getTipo2()
-                + ");");
+        String update = ("INSERT INTO Pokemon VALUES(" + pokemon.getNumero() + "," + pokemon.getAtk() + ", "
+                + pokemon.getDef() + ", " + pokemon.getHp() + ", " + poke[6] + ", " + poke[7] + ", " + pokemon.getNome()
+                + ", '" + pokemon.getRegiao() + "', " + pokemon.getSpatk() + ", " + pokemon.getSpdef() + ", "
+                + pokemon.getSpd() + ", " + pokemon.getTipo1() + ", " + pokemon.getTipo2() + ");");
         try {
             stat.executeUpdate(update);
         } catch (SQLException e) {
-            System.err.println("ERRO AO ADICIONAR POKEMON." + e.getMessage());
+            System.err.println("ERROR ADDING POKEMON " + pokemon.getNome() + ". " + e.getMessage());
         }
     }
 }
