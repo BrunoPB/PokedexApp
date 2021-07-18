@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Pokemon } from 'src/app/interfaces/pokemon.model';
 import { Usuario } from 'src/app/interfaces/usuario.model';
@@ -14,7 +15,7 @@ import { PokemonViewComponent } from './pokemon-view/pokemon-view.component';
   templateUrl: './pokedexview.component.html',
   styleUrls: ['./pokedexview.component.css'],
 })
-export class PokedexViewComponent implements OnInit {
+export class PokedexViewComponent {
   tableSource;
   fullTablePokes: Pokemon[];
   filteredTablePokes: Pokemon[];
@@ -40,6 +41,9 @@ export class PokedexViewComponent implements OnInit {
     this.pokeService.getUserPokemons().subscribe((pokes) => {
       this.fullTablePokes = pokes;
       this.filteredTablePokes = this.fullTablePokes;
+      this.filteredTablePokes.sort((n1: Pokemon, n2: Pokemon) => {
+        return n1.numero - n2.numero;
+      });
       this.countPokes();
       this.tableSource = new MatTableDataSource(this.filteredTablePokes);
     });
@@ -54,8 +58,6 @@ export class PokedexViewComponent implements OnInit {
         this.user = userP;
       });
   }
-
-  ngOnInit(): void {}
 
   getPokeImage(numero: number): string {
     return this.pokeimages.getPokeImage(numero);
@@ -136,6 +138,9 @@ export class PokedexViewComponent implements OnInit {
         this.megaFilter(this.legendaryFilter(this.fullTablePokes))
       )
     );
+    this.filteredTablePokes.sort((n1: Pokemon, n2: Pokemon) => {
+      return n1.numero - n2.numero;
+    });
     this.tableSource = new MatTableDataSource(this.filteredTablePokes);
   }
 
