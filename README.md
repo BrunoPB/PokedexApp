@@ -1,9 +1,12 @@
 # PokedexApp
 Simple Pokedex Application to study databases connection and http request response. Using: MySQL, Java, Maven, Spark, Angular
+
 Starting at June, 24, 2021
+
 Ended at July 17, 2021
 
 Steps to install the app:
+
 1. Install Angular CLI, MySQL, Maven and JDK
 2. Setup your own MySQL database
 3. Download the repository
@@ -20,4 +23,5 @@ Steps to install the app:
 14. Enjoy! :)
 
 To start the frontend: at /frontend -> `ng s`
+
 To start the backend: at /backend -> `mvn spring-boot:run`
