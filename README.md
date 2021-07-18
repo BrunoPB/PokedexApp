@@ -1,9 +1,11 @@
 # PokedexApp
-Simple Pokedex Application to study databases connection and http request response. Using: MySQL, Java, Maven, Spark, Angular
+Simple Pokedex Application to study databases connection and http request.
 
-Starting at June, 24, 2021
+Using: MySQL, Java, Maven, Spark, Angular
 
-Ended at July 17, 2021
+Starting at June, 24, 2021.
+
+Ended at July 17, 2021.
 
 Steps to install the app:
 
