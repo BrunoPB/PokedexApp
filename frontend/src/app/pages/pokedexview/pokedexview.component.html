@@ -1,5 +1,5 @@
 <main>
-    <div class="top-left-div">
+    <div class="top-div">
         <mat-form-field appearance="outline">
             <mat-label>Search Pokemon</mat-label>
             <input matInput (keyup)="searchPokemon($event)" #input>
@@ -7,18 +7,6 @@
         <button mat-button color="basic">
             <mat-icon>search</mat-icon>
         </button>
-    </div>
-    <div class="top-right-div">
-        <mat-form-field appearance="fill">
-            <mat-label>Order By</mat-label>
-            <mat-select value="Number">
-                <mat-option value="Number">Number</mat-option>
-                <mat-option value="Name">Name</mat-option>
-                <mat-option value="HP">HP</mat-option>
-                <mat-option value="Attack">Attack</mat-option>
-                <mat-option value="Total Stats">Total Stats</mat-option>
-            </mat-select>
-        </mat-form-field>
     </div>
     <div class="bottom-left-div">
         <table mat-table [dataSource]="tableSource">
