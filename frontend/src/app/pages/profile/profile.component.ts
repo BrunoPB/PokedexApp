@@ -49,18 +49,37 @@ export class ProfileComponent implements OnInit {
 
   setPokPerfilImage() {
     if (this.user.pokPerfil !== null) {
-      this.pokPerfilImage = this.pokeinfo.getPokeImage(this.user.pokPerfil);
-      this.pokPerfilExists = true;
+      if (this.user.pokPerfil > 1000) {
+        this.pokPerfilImage = this.pokeinfo.getMegaImage(
+          this.user.pokPerfil - 1000
+        );
+        this.pokPerfilExists = true;
+      } else {
+        this.pokPerfilImage = this.pokeinfo.getPokeImage(this.user.pokPerfil);
+        this.pokPerfilExists = true;
+      }
     }
   }
 
   setPokPerfilName() {
     if (this.user.pokPerfil !== null) {
-      this.pokeService
-        .getPokemonByNumber(this.user.pokPerfil)
-        .subscribe((poke) => {
-          this.pokPerfilName = poke.nome;
-        });
+      if (this.user.pokPerfil > 1000) {
+        this.pokeService
+          .getPokemonByNumber(this.user.pokPerfil - 1000)
+          .subscribe((poke) => {
+            if (poke.numero === 383 || poke.numero === 382) {
+              this.pokPerfilName = `Primal-${poke.nome}`;
+            } else {
+              this.pokPerfilName = `Mega-${poke.nome}`;
+            }
+          });
+      } else {
+        this.pokeService
+          .getPokemonByNumber(this.user.pokPerfil)
+          .subscribe((poke) => {
+            this.pokPerfilName = poke.nome;
+          });
+      }
     }
   }
 

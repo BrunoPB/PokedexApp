@@ -3,12 +3,14 @@
         <div class="img" *ngIf="pokPerfilExists">
             <img [src]="pokPerfilImage">
         </div>
-        <p class="pokperfil-pokemon" *ngIf="pokPerfilExists">#{{user.pokPerfil}} - {{pokPerfilName}}</p>
+        <p class="pokperfil-pokemon" *ngIf="pokPerfilExists">#{{user.pokPerfil>1000?(user.pokPerfil -
+            1000):user.pokPerfil}}
+            - {{pokPerfilName}}</p>
         <mat-form-field appearance="outline">
             <mat-label>Profile Pokemon</mat-label>
             <input matInput [(ngModel)]="innerPokPerfil" name="innerPokPerfil" type="text">
         </mat-form-field>
-        <button mat-raised-button color="accent" type="submit">Change profile
+        <button mat-raised-button color="accent" type="submit">{{innerPokPerfil===''?"Delete":"Change"}} profile
             Pokemon</button>
     </form>
     <mat-divider></mat-divider>

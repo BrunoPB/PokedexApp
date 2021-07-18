@@ -30,9 +30,15 @@ export class PagesComponent implements OnInit {
 
   setPokeBackground() {
     if (this.user.pokPerfil !== null) {
-      this.pokeBackground = `background-image: url('${this.pokeinfo.getPokeImage(
-        this.user.pokPerfil
-      )}');`;
+      if (this.user.pokPerfil > 1000) {
+        this.pokeBackground = `background-image: url('${this.pokeinfo.getMegaImage(
+          this.user.pokPerfil - 1000
+        )}');`;
+      } else {
+        this.pokeBackground = `background-image: url('${this.pokeinfo.getPokeImage(
+          this.user.pokPerfil
+        )}');`;
+      }
     }
   }
 }

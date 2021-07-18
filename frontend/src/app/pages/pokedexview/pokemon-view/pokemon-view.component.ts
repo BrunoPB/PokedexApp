@@ -128,10 +128,12 @@ export class PokemonViewComponent implements OnInit {
     return `${color};`;
   }
 
-  changePokPerfil() {
+  changePokPerfil(mega: boolean) {
     this.userService.getUsuarioByID(this.userID).subscribe((user) => {
       this.user = user;
-      this.user.pokPerfil = this.pokemon.numero;
+      mega
+        ? (user.pokPerfil = this.pokemon.numero + 1000)
+        : (this.user.pokPerfil = this.pokemon.numero);
       this.userService.putUsuario(this.user).subscribe();
       window.location.reload();
     });
