@@ -1,5 +1,5 @@
 <main>
-    <div class="top-div">
+    <div class="top-left-div">
         <mat-form-field appearance="outline">
             <mat-label>Search Pokemon</mat-label>
             <input matInput (keyup)="searchPokemon($event)" #input>
@@ -7,6 +7,22 @@
         <button mat-button color="basic">
             <mat-icon>search</mat-icon>
         </button>
+    </div>
+    <div class="top-right-div">
+        <mat-form-field appearance="outline">
+            <mat-label>Order By</mat-label>
+            <mat-select [(ngModel)]="innerOrder" (selectionChange)="orderTable()">
+                <mat-option value="Number">Number</mat-option>
+                <mat-option value="Name">Name</mat-option>
+                <mat-option value="HP">HP</mat-option>
+                <mat-option value="Atk">Attack</mat-option>
+                <mat-option value="Def">Defense</mat-option>
+                <mat-option value="SpAtk">Sp. Atk</mat-option>
+                <mat-option value="SpDef">Sp. Def</mat-option>
+                <mat-option value="Speed">Speed</mat-option>
+                <mat-option value="TotalStats">Total Stats</mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
     <div class="bottom-left-div">
         <table mat-table [dataSource]="tableSource">

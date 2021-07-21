@@ -28,6 +28,7 @@ export class PokedexViewComponent {
   innerType: string = 'Any';
   innerMega: boolean = false;
   innerLegendary: boolean = false;
+  innerOrder: string = 'Number';
 
   @ViewChild(MatTable) table: MatTable<Pokemon>;
 
@@ -41,11 +42,8 @@ export class PokedexViewComponent {
     this.pokeService.getUserPokemons().subscribe((pokes) => {
       this.fullTablePokes = pokes;
       this.filteredTablePokes = this.fullTablePokes;
-      this.filteredTablePokes.sort((n1: Pokemon, n2: Pokemon) => {
-        return n1.numero - n2.numero;
-      });
+      this.orderTable();
       this.countPokes();
-      this.tableSource = new MatTableDataSource(this.filteredTablePokes);
     });
 
     this.bsService.deletePokeObs.subscribe((numero) => {
@@ -138,10 +136,7 @@ export class PokedexViewComponent {
         this.megaFilter(this.legendaryFilter(this.fullTablePokes))
       )
     );
-    this.filteredTablePokes.sort((n1: Pokemon, n2: Pokemon) => {
-      return n1.numero - n2.numero;
-    });
-    this.tableSource = new MatTableDataSource(this.filteredTablePokes);
+    this.orderTable();
   }
 
   regionFilter(table: Pokemon[]): Pokemon[] {
@@ -201,5 +196,60 @@ export class PokedexViewComponent {
     } else {
       return table;
     }
+  }
+
+  orderTable() {
+    switch (this.innerOrder) {
+      case 'Number':
+        this.filteredTablePokes.sort((n1: Pokemon, n2: Pokemon) => {
+          return n1.numero - n2.numero;
+        });
+        break;
+      case 'Name':
+        this.filteredTablePokes.sort((n1: Pokemon, n2: Pokemon) => {
+          return n1.nome.localeCompare(n2.nome);
+        });
+        break;
+      case 'HP':
+        this.filteredTablePokes.sort((n1: Pokemon, n2: Pokemon) => {
+          return n2.hp - n1.hp;
+        });
+        break;
+      case 'Atk':
+        this.filteredTablePokes.sort((n1: Pokemon, n2: Pokemon) => {
+          return n2.attack - n1.attack;
+        });
+        break;
+      case 'Def':
+        this.filteredTablePokes.sort((n1: Pokemon, n2: Pokemon) => {
+          return n2.defense - n1.defense;
+        });
+        break;
+      case 'SpAtk':
+        this.filteredTablePokes.sort((n1: Pokemon, n2: Pokemon) => {
+          return n2.spAtk - n1.spAtk;
+        });
+        break;
+      case 'SpDef':
+        this.filteredTablePokes.sort((n1: Pokemon, n2: Pokemon) => {
+          return n2.spDef - n1.spDef;
+        });
+        break;
+      case 'Speed':
+        this.filteredTablePokes.sort((n1: Pokemon, n2: Pokemon) => {
+          return n2.speed - n1.speed;
+        });
+        break;
+      case 'TotalStats':
+        this.filteredTablePokes.sort((n1: Pokemon, n2: Pokemon) => {
+          let n1Total =
+            n1.hp + n1.attack + n1.defense + n1.spAtk + n1.spDef + n1.speed;
+          let n2Total =
+            n2.hp + n2.attack + n2.defense + n2.spAtk + n2.spDef + n2.speed;
+          return n2Total - n1Total;
+        });
+        break;
+    }
+    this.tableSource = new MatTableDataSource(this.filteredTablePokes);
   }
 }

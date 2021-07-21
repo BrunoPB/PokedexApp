@@ -16,32 +16,42 @@ div {
   height: auto;
 }
 
-/*TOP DIV*/
-.top-div {
+/*TOP LEFT DIV*/
+.top-left-div {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: baseline;
   width: 100%;
-  grid-column: span 2;
-  border-radius: 10px 10px 0 10px;
+  border-radius: 10px;
   border: none;
 }
 
-.top-div,
+.top-left-div,
 .bottom-right-div {
   background-color: rgba(0, 0, 0, 0.1);
   padding: 5px 0;
 }
 
-.top-div mat-form-field {
+.top-left-div mat-form-field {
   width: 100%;
   margin-left: 10px;
 }
 
-.top-div button {
+.top-left-div mat-form-field input {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.top-left-div button {
   height: 50px;
   margin-right: 10px;
+}
+
+/*TOP RIGHT DIV*/
+
+.top-right-div mat-form-field {
+  width: 100%;
 }
 
 /*BOTTOM LEFT DIV*/
@@ -113,9 +123,9 @@ img {
   display: grid;
   grid-template-rows: 3fr 2fr;
   gap: 3px;
-  padding: 5px 15px 0 15px;
+  padding: 5px 15px;
   width: auto;
-  border-radius: 0 0 10px 10px;
+  border-radius: 10px;
 }
 
 mat-divider {
