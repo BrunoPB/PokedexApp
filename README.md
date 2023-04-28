@@ -1,7 +1,7 @@
 # PokedexApp
 Simple Pokedex Application to study databases connection and http request.
 
-Using: MySQL, Java, Maven, Spark, Angular
+Using: MySQL, Java, Maven, Spring Boot, Angular
 
 Starting at June, 24, 2021.
 
